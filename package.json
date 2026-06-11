@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.9"
+  },
+  "devDependencies": {
+    "jest-html-reporter": "^4.4.0"
+  }
+}
