@@ -9,7 +9,7 @@ import {
 import QRCode from 'qrcode'
 
 const css = `
-  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
   .p-root {
     --white:     #ffffff;
@@ -20,10 +20,10 @@ const css = `
     --ink-2:     #3a3a38;
     --ink-3:     #737370;
     --ink-4:     #b0b0ac;
-    --teal:      #00a67e;
-    --teal-dk:   #007a5e;
-    --teal-bg:   #e6f7f2;
-    --teal-bd:   #b3e8d8;
+    --teal:      #0ea5b8;
+    --teal-dk:   #0b7a8a;
+    --teal-bg:   #e3f6fb;
+    --teal-bd:   #a8e0ea;
     --indigo:    #4f46e5;
     --indigo-bg: #eef0fd;
     --indigo-bd: #c7c3f7;
@@ -51,7 +51,7 @@ const css = `
     justify-content: center; color: var(--teal); flex-shrink: 0;
   }
   .p-title {
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 28px;
+    font-family: 'Inter', sans-serif; font-weight: 800; font-size: 28px;
     color: var(--ink); letter-spacing: -.02em; line-height: 1.1;
   }
   .p-subtitle { font-size: 13px; color: var(--ink-3); margin-top: 4px; }
@@ -78,7 +78,7 @@ const css = `
     transition: all .2s;
   }
   .p-metodo.sel .p-metodo-icon { background: var(--teal); color: #fff; }
-  .p-metodo-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; color: var(--ink); margin-bottom: 4px; }
+  .p-metodo-title { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 15px; color: var(--ink); margin-bottom: 4px; }
   .p-metodo-sub { font-size: 12px; color: var(--ink-3); }
 
   .p-detalle {
@@ -86,7 +86,7 @@ const css = `
     border-radius: 16px; padding: 24px;
   }
   .p-detalle-title {
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px;
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 15px;
     color: var(--ink); margin-bottom: 20px;
     display: flex; align-items: center; gap: 8px;
   }
@@ -121,7 +121,7 @@ const css = `
   .p-pay-btn {
     width: 100%; padding: 14px; border-radius: 12px; border: none;
     background: var(--teal); color: #fff;
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px;
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 15px;
     cursor: pointer; margin-top: 4px; transition: background .15s;
     display: flex; align-items: center; justify-content: center; gap: 8px;
   }
@@ -145,7 +145,7 @@ const css = `
   .p-banco-hours { font-size: 11px; color: var(--ink-4); margin-top: 2px; }
 
   .p-tips-title {
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px;
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 14px;
     color: var(--ink); margin-bottom: 14px;
     display: flex; align-items: center; gap: 8px;
   }
@@ -167,7 +167,7 @@ const css = `
     display: flex; align-items: center; justify-content: center;
     color: #fff; font-size: 28px; margin: 0 auto 14px;
   }
-  .p-confirm-t { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; color: var(--teal-dk); margin-bottom: 6px; }
+  .p-confirm-t { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 22px; color: var(--teal-dk); margin-bottom: 6px; }
   .p-confirm-s { font-size: 13px; color: var(--teal-dk); opacity: .7; }
   .p-confirm-demo { font-size: 11px; color: var(--ink-4); margin-top: 8px; }
 
@@ -361,3 +361,4 @@ export default function Pagos() {
     </div>
   )
 }
+

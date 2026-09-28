@@ -9,7 +9,7 @@ import { supabase } from '@/lib/supabaseClient'
 import { calcularTarifaCompleta } from '@/lib/tariffUtils'
 
 const css = `
-  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
   .m-root {
     --white:     #ffffff;
@@ -20,13 +20,13 @@ const css = `
     --ink-2:     #3a3a38;
     --ink-3:     #737370;
     --ink-4:     #b0b0ac;
-    --teal:      #00a67e;
-    --teal-dk:   #007a5e;
-    --teal-bg:   #e6f7f2;
-    --teal-bd:   #b3e8d8;
-    --indigo:    #4f46e5;
-    --indigo-bg: #eef0fd;
-    --indigo-bd: #c7c3f7;
+    --teal:      #159BB3;
+    --teal-dk:   #0D7182;
+    --teal-bg:   #E8F8FB;
+    --teal-bd:   #B8E4EB;
+    --indigo:    #2F80ED;
+    --indigo-bg: #EFF7FF;
+    --indigo-bd: #C7DFFF;
     --amber:     #d97706;
     --amber-bg:  #fffbeb;
     --amber-bd:  #fde68a;
@@ -36,7 +36,7 @@ const css = `
     --green:     #16a34a;
     --green-bg:  #f0fdf4;
     --green-bd:  #bbf7d0;
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Poppins', system-ui, sans-serif;
     color: var(--ink);
     padding: 0;
   }
@@ -52,7 +52,7 @@ const css = `
     justify-content: center; color: var(--teal); flex-shrink: 0;
   }
   .m-title {
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 28px;
+    font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 28px;
     color: var(--ink); letter-spacing: -.02em; line-height: 1.1;
   }
   .m-subtitle { font-size: 13px; color: var(--ink-3); margin-top: 4px; }
@@ -71,7 +71,7 @@ const css = `
     display: flex; align-items: center; gap: 10px;
   }
   .m-card-head-title {
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; color: #fff;
+    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 15px; color: #fff;
   }
   .m-card-head-sub { font-size: 12px; color: rgba(255,255,255,.4); margin-top: 2px; }
   .m-card-body { padding: 22px; }
@@ -103,7 +103,7 @@ const css = `
   .m-input-wrap svg { color: var(--ink-4); font-size: 14px; flex-shrink: 0; }
   .m-input-wrap input {
     border: none; outline: none; background: transparent;
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 22px;
+    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 22px;
     color: var(--ink); width: 100%; letter-spacing: .02em;
   }
   .m-input-hint {
@@ -119,7 +119,7 @@ const css = `
     display: flex; align-items: center; justify-content: space-between;
   }
   .m-preview-lbl { font-size: 11px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; color: var(--teal-dk); margin-bottom: 4px; }
-  .m-preview-val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 26px; color: var(--teal-dk); }
+  .m-preview-val { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 26px; color: var(--teal-dk); }
 
   /* ── ALERTA ── */
   .m-alert {
@@ -128,7 +128,7 @@ const css = `
     display: flex; align-items: flex-start; gap: 10px;
   }
   .m-alert-icon { color: var(--amber); margin-top: 1px; flex-shrink: 0; }
-  .m-alert-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; color: var(--amber); margin-bottom: 2px; }
+  .m-alert-title { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 13px; color: var(--amber); margin-bottom: 2px; }
   .m-alert-body { font-size: 12px; color: var(--ink-2); line-height: 1.5; }
 
   /* ── MENSAJE ── */
@@ -142,7 +142,7 @@ const css = `
   /* ── BTN ── */
   .m-btn {
     width: 100%; height: 48px; border-radius: 12px; border: none; cursor: pointer;
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px;
+    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px;
     display: flex; align-items: center; justify-content: center; gap: 8px;
     transition: opacity .15s, transform .1s;
   }
@@ -160,7 +160,7 @@ const css = `
   }
   .m-row:last-child { border-bottom: none; }
   .m-row-lbl { color: var(--ink-3); }
-  .m-row-val { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; color: var(--ink); }
+  .m-row-val { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px; color: var(--ink); }
 
   /* ── STAT CARDS ── */
   .m-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 16px; }
@@ -178,7 +178,7 @@ const css = `
   .icon-teal  { background: var(--teal-bg);   color: var(--teal);   }
   .icon-ind   { background: var(--indigo-bg); color: var(--indigo); }
   .m-stat-lbl { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 5px; }
-  .m-stat-val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; color: var(--ink); letter-spacing: -.02em; }
+  .m-stat-val { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 22px; color: var(--ink); letter-spacing: -.02em; }
   .m-stat-sub { font-size: 11px; color: var(--ink-3); margin-top: 4px; }
 
   /* ── TOTAL CARD ── */
@@ -187,7 +187,7 @@ const css = `
     display: flex; align-items: center; justify-content: space-between;
   }
   .m-total-lbl { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 6px; }
-  .m-total-val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 32px; color: var(--teal); letter-spacing: -.02em; }
+  .m-total-val { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 32px; color: var(--teal); letter-spacing: -.02em; }
   .m-total-sub { font-size: 12px; color: rgba(255,255,255,.4); margin-top: 8px; line-height: 1.5; }
   .m-total-icon { width: 48px; height: 48px; border-radius: 12px; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; color: var(--teal); font-size: 20px; }
 
@@ -199,7 +199,7 @@ const css = `
   }
   .m-meter-screen {
     background: var(--ink); color: var(--teal);
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px;
+    font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 20px;
     letter-spacing: .12em; padding: 8px 14px; border-radius: 8px;
     border: 2px solid var(--border-md); flex-shrink: 0;
   }
@@ -211,7 +211,7 @@ const css = `
     position: fixed; bottom: 24px; right: 24px;
     background: var(--ink); color: #fff;
     padding: 12px 20px; border-radius: 12px;
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px;
+    font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 14px;
     display: flex; align-items: center; gap: 10px;
     box-shadow: 0 8px 32px rgba(0,0,0,.2);
     border-left: 3px solid var(--teal);
@@ -313,17 +313,17 @@ export default function MedidorManual() {
     const W = 210
 
     // ── HEADER ──────────────────────────────────────────────────
-    doc.setFillColor(10, 36, 72)
+    doc.setFillColor(11, 122, 138)
     doc.rect(0, 0, W, 48, 'F')
-    doc.setFillColor(0, 166, 126)
+    doc.setFillColor(14, 165, 184)
     doc.rect(0, 0, 5, 48, 'F')
-    doc.setFillColor(0, 166, 126)
+    doc.setFillColor(14, 165, 184)
     doc.rect(0, 46, W, 2, 'F')
 
     // Ícono círculo teal
-    doc.setFillColor(0, 166, 126)
+    doc.setFillColor(14, 165, 184)
     doc.circle(22, 24, 10, 'F')
-    doc.setTextColor(10, 36, 72)
+    doc.setTextColor(11, 122, 138)
     doc.setFontSize(16); doc.setFont('helvetica', 'bold')
     doc.text('~', 18.5, 27)
 
@@ -338,9 +338,9 @@ export default function MedidorManual() {
     doc.text('NIT: 176695020  |  Tel: (4) 4258000  |  www.acs.gob.bo', 37, 33)
 
     // Caja número recibo
-    doc.setFillColor(0, 100, 80)
+    doc.setFillColor(11, 122, 138)
     doc.roundedRect(135, 10, 63, 28, 3, 3, 'F')
-    doc.setTextColor(0, 255, 180)
+    doc.setTextColor(14, 165, 184)
     doc.setFontSize(7); doc.setFont('helvetica', 'bold')
     doc.text('RECIBO DE CONSUMO', 166, 18, { align: 'center' })
     doc.setFontSize(9); doc.setTextColor(255, 255, 255)
@@ -356,7 +356,7 @@ export default function MedidorManual() {
     doc.setLineWidth(0.4)
     doc.roundedRect(12, y, W - 24, 44, 3, 3, 'S')
 
-    doc.setFillColor(10, 36, 72)
+    doc.setFillColor(11, 122, 138)
     doc.roundedRect(12, y, 54, 7, 2, 2, 'F')
     doc.setTextColor(255, 255, 255)
     doc.setFontSize(7); doc.setFont('helvetica', 'bold')
@@ -382,9 +382,9 @@ export default function MedidorManual() {
 
     // ── LECTURA DEL MEDIDOR ──────────────────────────────────────
     y = 112
-    doc.setFillColor(10, 36, 72)
+    doc.setFillColor(11, 122, 138)
     doc.roundedRect(12, y, W - 24, 8, 2, 2, 'F')
-    doc.setFillColor(0, 166, 126)
+    doc.setFillColor(14, 165, 184)
     doc.roundedRect(12, y, 4, 8, 1, 1, 'F')
     doc.setTextColor(255, 255, 255); doc.setFontSize(8); doc.setFont('helvetica', 'bold')
     doc.text('LECTURA DEL MEDIDOR', 20, y + 5.5)
@@ -403,15 +403,15 @@ export default function MedidorManual() {
       doc.roundedRect(bx, y, 58, 26, 3, 3, 'S')
       doc.setTextColor(80, 95, 115); doc.setFontSize(6.5); doc.setFont('helvetica', 'bold')
       doc.text(t.l, bx + 29, y + 7, { align: 'center' })
-      doc.setTextColor(10, 36, 72); doc.setFontSize(16); doc.setFont('helvetica', 'bold')
+      doc.setTextColor(11, 122, 138); doc.setFontSize(16); doc.setFont('helvetica', 'bold')
       doc.text(t.v, bx + 29, y + 20, { align: 'center' })
     })
 
     // ── TARIFA PROGRESIVA ────────────────────────────────────────
     y += 34
-    doc.setFillColor(10, 36, 72)
+    doc.setFillColor(11, 122, 138)
     doc.roundedRect(12, y, W - 24, 8, 2, 2, 'F')
-    doc.setFillColor(0, 166, 126)
+    doc.setFillColor(14, 165, 184)
     doc.roundedRect(12, y, 4, 8, 1, 1, 'F')
     doc.setTextColor(255, 255, 255); doc.setFontSize(8); doc.setFont('helvetica', 'bold')
     doc.text('DETALLE DE TARIFA PROGRESIVA', 20, y + 5.5)
@@ -420,7 +420,7 @@ export default function MedidorManual() {
     // Cabecera tabla
     doc.setFillColor(225, 235, 248)
     doc.rect(12, y, W - 24, 7, 'F')
-    doc.setTextColor(10, 36, 72); doc.setFontSize(7.5); doc.setFont('helvetica', 'bold')
+    doc.setTextColor(11, 122, 138); doc.setFontSize(7.5); doc.setFont('helvetica', 'bold')
     doc.text('Bloque',        22, y + 5)
     doc.text('Consumo',       88, y + 5, { align: 'center' })
     doc.text('Tarifa Bs/m³', 130, y + 5, { align: 'center' })
@@ -481,13 +481,13 @@ export default function MedidorManual() {
     doc.text(`Bs ${tarifa.subtotal.toFixed(2)}`, 175, y, { align: 'right' })
 
     y += 9
-    doc.setFillColor(10, 36, 72)
+    doc.setFillColor(11, 122, 138)
     doc.roundedRect(110, y - 6, W - 122, 16, 3, 3, 'F')
-    doc.setFillColor(0, 166, 126)
+    doc.setFillColor(14, 165, 184)
     doc.roundedRect(110, y - 6, 4, 16, 1, 1, 'F')
     doc.setTextColor(180, 210, 230); doc.setFontSize(9); doc.setFont('helvetica', 'bold')
     doc.text('TOTAL A PAGAR:', 120, y + 3)
-    doc.setTextColor(0, 255, 190); doc.setFontSize(13)
+    doc.setTextColor(14, 165, 184); doc.setFontSize(13)
     doc.text(`Bs ${tarifa.totalFinal.toFixed(2)}`, 193, y + 4, { align: 'right' })
 
     // ── VENCIMIENTO + QR ─────────────────────────────────────────
@@ -519,7 +519,7 @@ export default function MedidorManual() {
     doc.roundedRect(12, y, 140, 24, 3, 3, 'F')
     doc.setDrawColor(210, 222, 238); doc.setLineWidth(0.3)
     doc.roundedRect(12, y, 140, 24, 3, 3, 'S')
-    doc.setFillColor(10, 36, 72)
+    doc.setFillColor(11, 122, 138)
     doc.roundedRect(12, y, 42, 7, 2, 2, 'F')
     doc.setTextColor(255, 255, 255); doc.setFontSize(7); doc.setFont('helvetica', 'bold')
     doc.text('FORMAS DE PAGO', 33, y + 5, { align: 'center' })
@@ -529,9 +529,9 @@ export default function MedidorManual() {
     doc.text('• Pago en línea: www.acs.gob.bo', 17, y + 25)
 
     // ── PIE DE PÁGINA ────────────────────────────────────────────
-    doc.setFillColor(10, 36, 72)
+    doc.setFillColor(11, 122, 138)
     doc.rect(0, 278, W, 19, 'F')
-    doc.setFillColor(0, 166, 126)
+    doc.setFillColor(14, 165, 184)
     doc.rect(0, 278, W, 2, 'F')
     doc.setTextColor(150, 180, 210); doc.setFontSize(7.5); doc.setFont('helvetica', 'normal')
     doc.text(
@@ -735,3 +735,4 @@ export default function MedidorManual() {
     </div>
   )
 }
+

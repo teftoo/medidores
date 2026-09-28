@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import QRCode from 'qrcode'
 import {
   LineChart, Line, AreaChart, Area, XAxis, YAxis, Tooltip,
-  CartesianGrid, ResponsiveContainer, BarChart, Bar
+  CartesianGrid, ResponsiveContainer, BarChart, Bar, ReferenceLine
 } from 'recharts'
 import {
   FaFilePdf, FaCalendarAlt, FaTint, FaArrowUp, FaArrowDown,
@@ -16,7 +16,7 @@ import { supabase } from '@/lib/supabaseClient'
 import { calcularTarifaCompleta } from '@/lib/tariffUtils'
 
 const css = `
-  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
   .h-root {
     --white:     #ffffff;
@@ -66,7 +66,7 @@ const css = `
   /* ── HEADER ── */
   .h-header {
     display: flex; align-items: center; gap: 16px;
-    padding-bottom: 14px; border-bottom: 1.5px solid var(--border); margin-bottom: 16px;
+    padding-bottom: 24px; border-bottom: 1.5px solid var(--border); margin-bottom: 28px;
   }
   .h-header-icon {
     width: 52px; height: 52px; border-radius: 14px;
@@ -82,7 +82,7 @@ const css = `
   /* ── CLIENTE CARD ── */
   .h-cliente {
     background: var(--white); border: 1.5px solid var(--border);
-    border-radius: 16px; padding: 14px 20px; margin-bottom: 14px;
+    border-radius: 16px; padding: 18px 22px; margin-bottom: 24px;
     display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
   }
   .h-cliente-avatar {
@@ -101,10 +101,10 @@ const css = `
   }
 
   /* ── STAT STRIP ── */
-  .h-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 14px; }
+  .h-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 24px; }
   .h-stat {
     background: var(--white); border: 1.5px solid var(--border);
-    border-radius: 16px; padding: 14px 16px;
+    border-radius: 16px; padding: 20px 18px;
     transition: border-color .2s, transform .15s;
   }
   .h-stat:hover { border-color: var(--border-md); transform: translateY(-2px); }
@@ -166,7 +166,7 @@ const css = `
   /* ── GRÁFICO ── */
   .h-chart-wrap {
     background: var(--white); border: 1.5px solid var(--border);
-    border-radius: 16px; padding: 24px;
+    border-radius: 16px; padding: 24px; margin-bottom: 24px;
   }
   .h-chart-title {
     font-family: 'Inter', sans-serif; font-weight: 700; font-size: 15px;
@@ -177,7 +177,7 @@ const css = `
   /* ── TABLA ── */
   .h-table-wrap {
     background: var(--white); border: 1.5px solid var(--border);
-    border-radius: 16px; overflow: hidden; display: flex; flex-direction: column;
+    border-radius: 16px; overflow: hidden; margin-bottom: 24px;
   }
   .h-table-head {
     background: var(--ink); padding: 18px 24px;
@@ -188,8 +188,6 @@ const css = `
     display: flex; align-items: center; gap: 10px;
   }
   .h-table-head-count { font-size: 12px; color: rgba(255,255,255,.4); margin-top: 2px; }
-  .h-table-scroll { overflow-y: auto; max-height: 400px; }
-  table.h-table thead tr { position: sticky; top: 0; z-index: 1; }
 
   table.h-table { width: 100%; border-collapse: collapse; }
   table.h-table thead tr {
@@ -258,33 +256,6 @@ const css = `
   .h-tip-item:last-child { border-bottom: none; padding-bottom: 0; }
   .h-tip-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); flex-shrink: 0; margin-top: 6px; }
 
-  .h-stat { cursor: pointer; }
-  .h-stat-hint { font-size: 10.5px; color: var(--ink-4); margin-top: 8px; }
-  .h-modal-overlay {
-    position: fixed; inset: 0; background: rgba(17,17,16,.55);
-    display: flex; align-items: center; justify-content: center;
-    z-index: 100; padding: 20px; backdrop-filter: blur(2px);
-  }
-  .h-modal {
-    background: var(--white); border-radius: 18px; max-width: 440px; width: 100%;
-    padding: 28px 26px; box-shadow: 0 20px 60px rgba(0,0,0,.25);
-  }
-  .h-modal-icon {
-    width: 44px; height: 44px; border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; margin-bottom: 14px;
-  }
-  .h-modal-title { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 17px; color: var(--ink); margin-bottom: 8px; }
-  .h-modal-body { font-size: 13.5px; color: var(--ink-2); line-height: 1.6; margin-bottom: 12px; }
-  .h-modal-tip {
-    font-size: 12.5px; color: var(--ink-3); background: var(--off);
-    border-radius: 10px; padding: 12px 14px; line-height: 1.55;
-  }
-  .h-modal-close {
-    margin-top: 18px; width: 100%; padding: 11px;
-    background: var(--ink); color: #fff; border: none; border-radius: 10px;
-    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer;
-  }
   .h-empty {
     display: flex; flex-direction: column; align-items: center;
     padding: 60px 40px; gap: 10px; text-align: center;
@@ -316,6 +287,33 @@ const MESES = {
 const nivelConsumo = (m3) => m3 <= 10 ? 'opt' : m3 <= 20 ? 'nor' : 'alt'
 const nivelLabel   = (m3) => m3 <= 10 ? 'Óptimo' : m3 <= 20 ? 'Normal' : 'Alto'
 
+const EXPLICACIONES = {
+  promedio: {
+    icon: '💧', color: 'teal',
+    titulo: '¿Qué es el consumo promedio?',
+    cuerpo: 'Es el resultado de sumar el agua que gastaste en todos los meses registrados y dividirla entre la cantidad de meses. Te sirve para saber, en números simples, cuánta agua consumís normalmente cada mes.',
+    tip: 'Si tu factura de un mes sube mucho más que este promedio, es una señal para revisar si hay una fuga o un uso fuera de lo normal.'
+  },
+  maximo: {
+    icon: '📈', color: 'red',
+    titulo: '¿Qué es el consumo máximo?',
+    cuerpo: 'Es el mes en el que más agua usaste desde que empezamos a registrar tus lecturas. No siempre es malo: puede deberse a visitas, limpieza profunda, o más personas en casa ese mes.',
+    tip: 'Si no recordás una razón clara para ese pico, vale la pena revisar grifos, cisternas o cañerías por posibles fugas.'
+  },
+  minimo: {
+    icon: '📉', color: 'green',
+    titulo: '¿Qué es el consumo mínimo?',
+    cuerpo: 'Es el mes en el que menos agua gastaste. Es un buen punto de referencia: te muestra que sí es posible mantener un consumo bajo, y podés usarlo como meta para los próximos meses.',
+    tip: '¡Fijate qué hiciste distinto ese mes! Repetir esos hábitos puede ayudarte a ahorrar en tu próxima factura.'
+  },
+  total: {
+    icon: '💰', color: 'ind',
+    titulo: '¿Qué es el total acumulado?',
+    cuerpo: 'Es la suma de todo lo que se te facturó en el período que estás viendo (todos los meses juntos). No es lo que pagás cada mes, sino el total de todo el rango de fechas mostrado.',
+    tip: 'Si filtrás por un mes específico arriba, este número se ajusta y te muestra solo el total de ese período.'
+  }
+}
+
 export default function Historial() {
   const [usuario,   setUsuario]   = useState(null)
   const [lecturas,  setLecturas]  = useState([])
@@ -323,33 +321,7 @@ export default function Historial() {
   const [filtrados, setFiltrados] = useState([])
   const [catU,      setCatU]      = useState('R')
   const [vista,     setVista]     = useState('area')
-    const EXPLICACIONES = {
-    promedio: {
-      icon: <FaTint />, color: 'teal',
-      titulo: 'Promedio mensual',
-      cuerpo: 'Es el consumo típico que tuviste por mes, calculado sobre todos los meses que aparecen en tu historial.',
-      tip: 'Si tu consumo de un mes está muy por encima de este promedio, vale la pena revisar si hubo alguna fuga o uso inusual.'
-    },
-    maximo: {
-      icon: <FaArrowUp />, color: 'red',
-      titulo: 'Consumo máximo',
-      cuerpo: 'Es el mes en el que más agua consumiste dentro del período mostrado.',
-      tip: 'Compara ese mes con los demás: ¿hubo más personas en casa, vacaciones, o alguna reparación pendiente?'
-    },
-    minimo: {
-      icon: <FaArrowDown />, color: 'green',
-      titulo: 'Consumo mínimo',
-      cuerpo: 'Es el mes en el que menos agua consumiste, tu mes más eficiente dentro del período mostrado.',
-      tip: 'Usa este mes como referencia: qué hiciste distinto ahí que podrías repetir el resto del año.'
-    },
-    total: {
-      icon: <FaDollarSign />, color: 'ind',
-      titulo: 'Total acumulado',
-      cuerpo: 'Es la suma de todo lo facturado en bolivianos durante el período que estás viendo.',
-      tip: 'Si notas que este total sube mes a mes sin razón clara, revisa el detalle de consumo por mes en la tabla.'
-    },
-  }
-const [cargando,  setCargando]  = useState(true)
+  const [cargando,  setCargando]  = useState(true)
   const [statModal, setStatModal] = useState(null)
 
   useEffect(() => {
@@ -510,13 +482,6 @@ const [cargando,  setCargando]  = useState(true)
     label: `${MESES[i.fecha.split('-')[1]]} ${i.fecha.split('-')[0]}`,
   }))
 
-  const chartDataAgg = Object.values(
-    filtrados.reduce((acc, i) => {
-      if (!acc[i.fecha]) acc[i.fecha] = { fecha: i.fecha, consumo: 0, label: `${MESES[i.fecha.split('-')[1]]} ${i.fecha.split('-')[0]}` }
-      acc[i.fecha].consumo += i.consumo
-      return acc
-    }, {})
-  ).sort((a, b) => a.fecha.localeCompare(b.fecha))
   const tooltipStyle = {
     contentStyle: {
       background: '#111110', border: 'none', borderRadius: 10,
@@ -569,29 +534,15 @@ const [cargando,  setCargando]  = useState(true)
           { icon: <FaArrowDown />,   cls: 'icon-green', lbl: 'Consumo mínimo',   val: `${minimo} m³`,   sub: 'Tu mes más eficiente'         },
           { icon: <FaDollarSign />,  cls: 'icon-ind',   lbl: 'Total acumulado',  val: `Bs ${totalAcum}`, sub: 'Facturado en el período'      },
         ].map((s, i) => (
-          <div key={i} className="h-stat" onClick={() => setStatModal(['promedio','maximo','minimo','total'][i])}>
+          <div key={i} className="h-stat">
             <div className={`h-stat-icon ${s.cls}`}>{s.icon}</div>
             <div className="h-stat-lbl">{s.lbl}</div>
             <div className="h-stat-val">{s.val}</div>
             <div className="h-stat-sub">{s.sub}</div>
-            <div className="h-stat-hint">Toca para entender esto →</div>
           </div>
         ))}
       </div>
 
-      {statModal && (
-        <div className="h-modal-overlay" onClick={() => setStatModal(null)}>
-          <div className="h-modal" onClick={(e) => e.stopPropagation()}>
-            <div className={`h-modal-icon icon-${EXPLICACIONES[statModal].color}`}>
-              {EXPLICACIONES[statModal].icon}
-            </div>
-            <div className="h-modal-title">{EXPLICACIONES[statModal].titulo}</div>
-            <div className="h-modal-body">{EXPLICACIONES[statModal].cuerpo}</div>
-            <div className="h-modal-tip">{EXPLICACIONES[statModal].tip}</div>
-            <button className="h-modal-close" onClick={() => setStatModal(null)}>Entendido</button>
-          </div>
-        </div>
-      )}
       {/* TENDENCIA */}
       {tendencia && (
         <div className={`h-tend ${tendencia.sube ? 'up' : 'down'}`}>
@@ -636,8 +587,6 @@ const [cargando,  setCargando]  = useState(true)
         </div>
       </div>
 
-      {/* GRÁFICO Y TABLA */}
-      <div className="h-graf-tabla-row">
       {/* GRÁFICO */}
       <div className="h-chart-wrap">
         <div className="h-chart-title">Consumo mensual de agua</div>
@@ -647,15 +596,16 @@ const [cargando,  setCargando]  = useState(true)
         <div style={{ height: 260 }}>
           <ResponsiveContainer width="100%" height="100%">
             {vista === 'linea' ? (
-              <LineChart data={chartDataAgg}>
+              <LineChart data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#ebebea" />
-                <XAxis dataKey="label" stroke="#b0b0ac" tick={{ fontSize: 10.5 }} angle={-35} textAnchor="end" height={55} interval={0} />
+                <XAxis dataKey="label" stroke="#b0b0ac" tick={{ fontSize: 11 }} />
                 <YAxis stroke="#b0b0ac" tick={{ fontSize: 11 }} label={{ value: 'm³', angle: -90, position: 'insideLeft', style: { fontSize: 11 } }} />
+                <ReferenceLine y={20} stroke="#d97706" strokeDasharray="4 4" label={{ value: 'Límite recomendado: 20 m³', position: 'insideTopRight', fontSize: 10, fill: '#d97706' }} />
                 <Tooltip {...tooltipStyle} />
                 <Line type="monotone" dataKey="consumo" stroke="#0ea5b8" strokeWidth={2.5} dot={{ fill: '#0ea5b8', r: 4 }} activeDot={{ r: 7 }} />
               </LineChart>
             ) : vista === 'area' ? (
-              <AreaChart data={chartDataAgg}>
+              <AreaChart data={chartData}>
                 <defs>
                   <linearGradient id="gradTeal" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%"  stopColor="#0ea5b8" stopOpacity={0.25} />
@@ -663,16 +613,18 @@ const [cargando,  setCargando]  = useState(true)
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="#ebebea" />
-                <XAxis dataKey="label" stroke="#b0b0ac" tick={{ fontSize: 10.5 }} angle={-35} textAnchor="end" height={55} interval={0} />
+                <XAxis dataKey="label" stroke="#b0b0ac" tick={{ fontSize: 11 }} />
                 <YAxis stroke="#b0b0ac" tick={{ fontSize: 11 }} label={{ value: 'm³', angle: -90, position: 'insideLeft', style: { fontSize: 11 } }} />
+                <ReferenceLine y={20} stroke="#d97706" strokeDasharray="4 4" label={{ value: 'Límite recomendado: 20 m³', position: 'insideTopRight', fontSize: 10, fill: '#d97706' }} />
                 <Tooltip {...tooltipStyle} />
                 <Area type="monotone" dataKey="consumo" stroke="#0ea5b8" strokeWidth={2.5} fill="url(#gradTeal)" />
               </AreaChart>
             ) : (
-              <BarChart data={chartDataAgg}>
+              <BarChart data={chartData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#ebebea" />
-                <XAxis dataKey="label" stroke="#b0b0ac" tick={{ fontSize: 10.5 }} angle={-35} textAnchor="end" height={55} interval={0} />
+                <XAxis dataKey="label" stroke="#b0b0ac" tick={{ fontSize: 11 }} />
                 <YAxis stroke="#b0b0ac" tick={{ fontSize: 11 }} label={{ value: 'm³', angle: -90, position: 'insideLeft', style: { fontSize: 11 } }} />
+                <ReferenceLine y={20} stroke="#d97706" strokeDasharray="4 4" label={{ value: 'Límite recomendado: 20 m³', position: 'insideTopRight', fontSize: 10, fill: '#d97706' }} />
                 <Tooltip {...tooltipStyle} />
                 <Bar dataKey="consumo" fill="#0ea5b8" radius={[6, 6, 0, 0]} />
               </BarChart>
@@ -697,7 +649,6 @@ const [cargando,  setCargando]  = useState(true)
             <div className="h-empty-s">No hay lecturas para el período seleccionado</div>
           </div>
         ) : (
-          <div className="h-table-scroll">
           <table className="h-table">
             <thead>
               <tr>
@@ -710,7 +661,7 @@ const [cargando,  setCargando]  = useState(true)
               </tr>
             </thead>
             <tbody>
-              {[...filtrados].reverse().map((dato, idx) => {
+              {filtrados.map((dato, idx) => {
                 const [year, month] = dato.fecha.split('-')
                 const factura = calcTotal(dato.consumo)
                 const pct = Math.min((dato.consumo / maxConsumo) * 100, 100)
@@ -759,10 +710,7 @@ const [cargando,  setCargando]  = useState(true)
               })}
             </tbody>
           </table>
-          </div>
         )}
-      </div>
-
       </div>
 
       {/* TIPS */}

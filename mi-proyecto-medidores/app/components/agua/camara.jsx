@@ -14,7 +14,7 @@ import { supabase } from '@/lib/supabaseClient'
 import { calcularTarifaCompleta } from '@/lib/tariffUtils'
 
 const css = `
-  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
   .c-root {
     --white:     #ffffff;
@@ -25,10 +25,10 @@ const css = `
     --ink-2:     #3a3a38;
     --ink-3:     #737370;
     --ink-4:     #b0b0ac;
-    --teal:      #00a67e;
-    --teal-dk:   #007a5e;
-    --teal-bg:   #e6f7f2;
-    --teal-bd:   #b3e8d8;
+    --teal:      #0ea5b8;
+    --teal-dk:   #0b7a8a;
+    --teal-bg:   #e3f6fb;
+    --teal-bd:   #a8e0ea;
     --indigo:    #4f46e5;
     --indigo-bg: #eef0fd;
     --indigo-bd: #c7c3f7;
@@ -56,7 +56,7 @@ const css = `
     justify-content: center; color: var(--teal); flex-shrink: 0;
   }
   .c-title {
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 28px;
+    font-family: 'Inter', sans-serif; font-weight: 800; font-size: 28px;
     color: var(--ink); letter-spacing: -.02em; line-height: 1.1;
   }
   .c-subtitle { font-size: 13px; color: var(--ink-3); margin-top: 4px; }
@@ -127,7 +127,7 @@ const css = `
     padding: 5px 12px; border-radius: 99px; font-size: 12px; font-weight: 600;
     display: flex; align-items: center; gap: 6px;
   }
-  .c-cam-badge.live   { background: #00a67e; color: #fff; }
+  .c-cam-badge.live   { background: #0ea5b8; color: #fff; }
   .c-cam-badge.ok     { background: #16a34a; color: #fff; }
   .c-cam-badge.warn   { background: #d97706; color: #fff; }
   .c-live-dot { width: 6px; height: 6px; border-radius: 50%; background: #fff; animation: blink 1.2s ease-in-out infinite; }
@@ -204,14 +204,14 @@ const css = `
     width: 44px; height: 44px; border-radius: 12px; background: var(--teal);
     display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20px; flex-shrink: 0;
   }
-  .c-lectura-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 30px; color: var(--teal-dk); }
+  .c-lectura-num { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 30px; color: var(--teal-dk); }
   .c-lectura-lbl { font-size: 12px; color: var(--teal-dk); }
 
   /* ── CARDS ── */
   .c-card { background: var(--white); border: 1.5px solid var(--border); border-radius: 16px; padding: 20px; }
   .c-card + .c-card { margin-top: 14px; }
   .c-card-title {
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px;
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 14px;
     color: var(--ink); margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
   }
   .c-info-row { display: flex; justify-content: space-between; align-items: center; padding: 9px 0; border-bottom: 1px solid var(--border); }
@@ -222,13 +222,13 @@ const css = `
   /* ── CONSUMO DARK ── */
   .c-consumo-card { background: var(--ink); border-radius: 16px; padding: 20px; margin-top: 14px; }
   .c-consumo-title {
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px;
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 14px;
     color: rgba(255,255,255,.6); margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
   }
   .c-consumo-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,.07); }
   .c-consumo-row:last-child { border-bottom: none; }
   .c-consumo-k { font-size: 13px; color: rgba(255,255,255,.45); }
-  .c-consumo-v { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 18px; color: #fff; }
+  .c-consumo-v { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 18px; color: #fff; }
   .c-consumo-total { font-size: 26px !important; color: var(--teal) !important; }
 
   /* ── STEPS ── */
@@ -238,7 +238,7 @@ const css = `
   .c-step-t { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
   .c-step-s { font-size: 12px; color: var(--ink-3); }
 
-  .c-tips-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; color: var(--ink); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .c-tips-title { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; color: var(--ink); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
   .c-tip { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 12px; color: var(--ink-2); line-height: 1.5; }
   .c-tip:last-child { border-bottom: none; padding-bottom: 0; }
   .c-tip-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--teal); flex-shrink: 0; margin-top: 5px; }
@@ -252,14 +252,14 @@ const css = `
   .c-modal { background: var(--white); border-radius: 20px; box-shadow: 0 24px 64px rgba(0,0,0,.2); width: 100%; max-width: 460px; overflow: hidden; }
   .c-modal-header { background: var(--ink); padding: 22px 24px; display: flex; align-items: center; gap: 12px; }
   .c-modal-header-icon { color: var(--teal); font-size: 22px; }
-  .c-modal-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 17px; color: #fff; }
+  .c-modal-title { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 17px; color: #fff; }
   .c-modal-body { padding: 24px; display: flex; flex-direction: column; gap: 14px; }
   .c-modal-row { background: var(--off); border-radius: 12px; padding: 16px; border: 1.5px solid var(--border); }
   .c-modal-row-lbl { font-size: 12px; color: var(--ink-3); margin-bottom: 4px; }
-  .c-modal-row-val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 26px; color: var(--ink); }
+  .c-modal-row-val { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 26px; color: var(--ink); }
   .c-modal-total { background: var(--teal-bg); border-radius: 12px; padding: 18px; border: 1.5px solid var(--teal-bd); }
   .c-modal-total-lbl { font-size: 12px; color: var(--teal-dk); margin-bottom: 4px; }
-  .c-modal-total-val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 34px; color: var(--teal-dk); }
+  .c-modal-total-val { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 34px; color: var(--teal-dk); }
   .c-modal-note { font-size: 12px; color: var(--ink-3); text-align: center; line-height: 1.6; }
   .c-modal-footer { padding: 16px 24px; background: var(--off); display: flex; gap: 10px; justify-content: flex-end; }
   .c-modal-cancel { padding: 10px 20px; border-radius: 10px; border: 1.5px solid var(--border); background: var(--white); font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 500; color: var(--ink-2); cursor: pointer; }
@@ -272,7 +272,7 @@ const css = `
   .c-modal-danger .c-modal-header-icon { color: #fff; }
   .c-modal-danger-body { padding: 28px 24px; display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center; }
   .c-modal-danger-icon { width: 64px; height: 64px; border-radius: 50%; background: var(--red-bg); border: 2px solid var(--red-bd); display: flex; align-items: center; justify-content: center; color: var(--red); font-size: 26px; }
-  .c-modal-danger-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; color: var(--ink); }
+  .c-modal-danger-title { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 18px; color: var(--ink); }
   .c-modal-danger-msg { font-size: 14px; color: var(--ink-2); line-height: 1.6; max-width: 340px; }
   .c-modal-danger-hints { background: var(--off); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; width: 100%; text-align: left; }
   .c-modal-danger-hints-title { font-size: 12px; font-weight: 600; color: var(--ink); margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
@@ -581,7 +581,7 @@ export default function Camara() {
             {/* Overlay de procesamiento */}
             {isProcessing && (
               <div className="c-cam-overlay">
-                <FaSpinner size={36} color="#00a67e" style={{ animation: 'spin .7s linear infinite' }} />
+                <FaSpinner size={36} color="#0ea5b8" style={{ animation: 'spin .7s linear infinite' }} />
                 <div className="c-cam-overlay-step">{processStep}</div>
                 <div className="c-cam-overlay-text">Analizando la imagen,<br />esto toma unos segundos…</div>
               </div>
@@ -835,3 +835,4 @@ export default function Camara() {
     </div>
   )
 }
+

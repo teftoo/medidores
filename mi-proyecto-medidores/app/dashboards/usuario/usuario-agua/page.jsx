@@ -26,7 +26,7 @@ const Geolocalizacion = dynamic(
 )
 
 const css = `
-  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -39,10 +39,10 @@ const css = `
     --ink-2:      #3a3a38;
     --ink-3:      #737370;
     --ink-4:      #b0b0ac;
-    --teal:       #00a67e;
-    --teal-dk:    #007a5e;
-    --teal-bg:    #e6f7f2;
-    --teal-bd:    #b3e8d8;
+    --teal:       #0ea5b8;
+    --teal-dk:    #0b7a8a;
+    --teal-bg:    #e3f6fb;
+    --teal-bd:    #a8e0ea;
     --indigo:     #4f46e5;
     --indigo-bg:  #eef0fd;
     --indigo-bd:  #c7c3f7;
@@ -84,7 +84,7 @@ const css = `
     flex-shrink: 0; color: #fff;
   }
   .sb-brand-name {
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px;
+    font-family: 'Inter', sans-serif; font-weight: 800; font-size: 20px;
     color: #fff; letter-spacing: -.01em; white-space: nowrap;
   }
   .sb-brand-dot { color: var(--teal); }
@@ -155,7 +155,7 @@ const css = `
   }
   .tb-back:hover { color: var(--ink); background: var(--off); }
   .tb-divider { width: 1px; height: 18px; background: var(--border-md); }
-  .tb-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; color: var(--ink); }
+  .tb-title { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 15px; color: var(--ink); }
   .tb-sub { font-size: 11.5px; color: var(--ink-4); margin-top: 1px; }
   .tb-status {
     display: flex; align-items: center; gap: 6px; padding: 5px 13px;
@@ -165,11 +165,28 @@ const css = `
   .tb-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; animation: blink 2s infinite; }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
 
-  .cn-page { padding: 40px 44px; max-width: 960px; display: flex; flex-direction: column; gap: 32px; }
+  .cn-page { padding: 40px 44px; max-width: 1280px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1fr 300px; gap: 32px; align-items: start; }
+  .cn-main-col { display: flex; flex-direction: column; gap: 32px; min-width: 0; }
+
+  .side-panel { display: flex; flex-direction: column; gap: 16px; position: sticky; top: 78px; }
+  .side-card { background: var(--white); border: 1.5px solid var(--border); border-radius: 18px; padding: 20px; }
+  .side-card-title { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px; color: var(--ink); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+  .side-card-title svg { color: var(--teal); }
+  .side-status-row { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 12.5px; }
+  .side-status-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .side-status-lbl { color: var(--ink-3); }
+  .side-status-val { font-weight: 600; color: var(--ink); text-transform: capitalize; }
+  .side-status-val.ok { color: var(--teal-dk); }
+  .side-payment-amt { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 26px; color: var(--ink); margin: 4px 0 4px; }
+  .side-payment-due { font-size: 11.5px; color: var(--ink-3); margin-bottom: 14px; }
+  .side-quick-btn { width: 100%; display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--off); font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 500; color: var(--ink-2); cursor: pointer; transition: all .15s; margin-bottom: 8px; }
+  .side-quick-btn:last-child { margin-bottom: 0; }
+  .side-quick-btn:hover { background: var(--teal-bg); border-color: var(--teal-bd); color: var(--teal-dk); }
+  .side-quick-btn svg { color: var(--teal); flex-shrink: 0; }
 
   .greet-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
   .greet-h {
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 44px;
+    font-family: 'Inter', sans-serif; font-weight: 800; font-size: 44px;
     line-height: 1.05; color: var(--ink); letter-spacing: -.03em;
   }
   .greet-h .acc { color: var(--teal); }
@@ -179,7 +196,7 @@ const css = `
     padding: 10px 18px; border-radius: 13px; text-align: right; flex-shrink: 0;
   }
   .month-chip .ml { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-4); font-weight: 600; }
-  .month-chip .mv { font-size: 14px; font-weight: 700; color: var(--ink-2); margin-top: 3px; font-family: 'Syne', sans-serif; }
+  .month-chip .mv { font-size: 14px; font-weight: 700; color: var(--ink-2); margin-top: 3px; font-family: 'Inter', sans-serif; }
 
   .stat-strip { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 16px; }
 
@@ -199,7 +216,7 @@ const css = `
 
   .sc-value { display: flex; align-items: baseline; gap: 7px; }
   .sc-num {
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 54px;
+    font-family: 'Inter', sans-serif; font-weight: 800; font-size: 54px;
     line-height: 1; letter-spacing: -.04em; color: var(--ink);
   }
   .hero .sc-num { color: #fff; }
@@ -224,7 +241,7 @@ const css = `
   .mini-sc-icon { width: 40px; height: 40px; border-radius: 11px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
   .mini-sc-icon.teal { background: var(--teal-bg); color: var(--teal); }
   .mini-sc-icon.indigo { background: var(--indigo-bg); color: var(--indigo); }
-  .mini-sc-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 28px; color: var(--ink); letter-spacing: -.02em; line-height: 1; }
+  .mini-sc-num { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 28px; color: var(--ink); letter-spacing: -.02em; line-height: 1; }
   .mini-sc-lbl { font-size: 12px; color: var(--ink-3); margin-top: 5px; }
 
   .pay-bs { font-size: 16px; color: rgba(255,255,255,.45); font-weight: 500; align-self: flex-end; margin-bottom: 6px; }
@@ -232,7 +249,7 @@ const css = `
   .pay-btn {
     width: 100%; margin-top: 22px; padding: 13px;
     background: var(--white); color: var(--teal-dk); border: none; border-radius: 11px;
-    font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700;
+    font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700;
     cursor: pointer; letter-spacing: -.01em; transition: all .15s;
   }
   .pay-btn:hover { background: var(--teal-bg); }
@@ -254,7 +271,7 @@ const css = `
     border: 1px solid var(--indigo-bd); border-radius: 10px;
     display: flex; align-items: center; justify-content: center; color: var(--indigo);
   }
-  .ft-title { font-size: 14.5px; font-weight: 700; color: var(--ink); text-align: left; font-family: 'Syne', sans-serif; }
+  .ft-title { font-size: 14.5px; font-weight: 700; color: var(--ink); text-align: left; font-family: 'Inter', sans-serif; }
   .ft-sub { font-size: 12px; color: var(--ink-3); margin-top: 2px; text-align: left; }
   .ft-chevron { color: var(--ink-3); transition: transform .2s; }
   .ft-chevron.open { transform: rotate(90deg); }
@@ -268,8 +285,8 @@ const css = `
     display: flex; justify-content: space-between; align-items: center;
     padding: 15px 18px; background: var(--ink); border-radius: 12px; margin-top: 4px;
   }
-  .fact-total .ftl { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; color: rgba(255,255,255,.5); }
-  .fact-total .ftv { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 24px; color: #fff; letter-spacing: -.02em; }
+  .fact-total .ftl { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 14px; color: rgba(255,255,255,.5); }
+  .fact-total .ftv { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 24px; color: #fff; letter-spacing: -.02em; }
   .tarifa-note { padding: 13px 16px; background: var(--indigo-bg); border: 1px solid var(--indigo-bd); border-radius: 10px; font-size: 12px; color: var(--indigo-dk); line-height: 1.6; }
 
   .tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
@@ -282,12 +299,12 @@ const css = `
   .tip-icon { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .tip-icon.teal { background: var(--teal-bg); color: var(--teal); }
   .tip-icon.indigo { background: var(--indigo-bg); color: var(--indigo); }
-  .tip-t { font-family: 'Syne', sans-serif; font-size: 13.5px; font-weight: 700; color: var(--ink); margin-bottom: 5px; }
+  .tip-t { font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 700; color: var(--ink); margin-bottom: 5px; }
   .tip-b { font-size: 12.5px; color: var(--ink-3); line-height: 1.55; }
 
   .empty-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 40px; gap: 12px; text-align: center; }
   .empty-icon { width: 52px; height: 52px; background: var(--teal-bg); border: 1.5px solid var(--teal-bd); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: var(--teal); margin-bottom: 6px; }
-  .empty-t { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); }
+  .empty-t { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); }
   .empty-s { font-size: 13.5px; color: var(--ink-3); }
 
   .cn-loader { min-height: 100vh; flex: 1; display: flex; align-items: center; justify-content: center; background: var(--white); }
@@ -296,7 +313,7 @@ const css = `
   @keyframes spin { to { transform: rotate(360deg); } }
   .loader-lbl { font-size: 12px; color: var(--ink-4); letter-spacing: .1em; text-transform: uppercase; }
 
-  .cn-footer { font-size: 11.5px; color: var(--ink-4); text-align: center; padding-bottom: 44px; }
+  .cn-footer { font-size: 11.5px; color: var(--ink-4); text-align: center; padding-bottom: 44px; grid-column: 1 / -1; }
 
   @media (max-width: 820px) {
     .stat-strip { grid-template-columns: 1fr; }
@@ -487,6 +504,7 @@ export default function UsuarioAgua() {
         </header>
 
         <div className="cn-page">
+          <div className="cn-main-col">
           {activeTab === 'inicio' ? (
             <InicioAgua
               usuario={usuario}
@@ -504,6 +522,50 @@ export default function UsuarioAgua() {
                 <div className="empty-s">Este módulo estará disponible pronto</div>
               </div>
             )
+          )}
+
+          </div>
+
+          {activeTab === 'inicio' && (
+            <aside className="side-panel">
+              <div className="side-card">
+                <div className="side-card-title"><Droplets size={14} /> Estado del medidor</div>
+                <div className="side-status-row">
+                  <span className="side-status-lbl">Última lectura</span>
+                  <span className="side-status-val">{consumo.toFixed(2)} m³</span>
+                </div>
+                <div className="side-status-row">
+                  <span className="side-status-lbl">Estado</span>
+                  <span className="side-status-val ok">Activo</span>
+                </div>
+                <div className="side-status-row">
+                  <span className="side-status-lbl">Tipo de cuenta</span>
+                  <span className="side-status-val">{usuario?.tipo_usuario}</span>
+                </div>
+              </div>
+
+              <div className="side-card">
+                <div className="side-card-title"><CreditCard size={14} /> Próximo pago</div>
+                <div className="side-payment-amt">Bs {tarifaDetalles?.totalFinal?.toFixed(2)}</div>
+                <div className="side-payment-due">Vence el 10 del próximo mes</div>
+                <button className="side-quick-btn" onClick={() => setActiveTab('pagos')}>
+                  <CreditCard size={14} /> Pagar ahora
+                </button>
+              </div>
+
+              <div className="side-card">
+                <div className="side-card-title"><Zap size={14} /> Accesos rápidos</div>
+                <button className="side-quick-btn" onClick={() => setActiveTab('camara')}>
+                  <Camera size={14} /> Lectura con Cámara IA
+                </button>
+                <button className="side-quick-btn" onClick={() => setActiveTab('historial')}>
+                  <History size={14} /> Ver historial
+                </button>
+                <button className="side-quick-btn" onClick={() => setActiveTab('reportes')}>
+                  <FileText size={14} /> Generar reporte
+                </button>
+              </div>
+            </aside>
           )}
 
           <p className="cn-footer">
@@ -671,3 +733,8 @@ function InicioAgua({ usuario, consumo, tarifaDetalles, porcentajeConsumo, nivel
     </>
   )
 }
+
+
+
+
+

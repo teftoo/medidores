@@ -25,8 +25,8 @@ L.Icon.Default.mergeOptions({
 const iconUsuario = new L.DivIcon({
   html: `<div style="
     width:36px;height:36px;border-radius:50%;
-    background:#00a67e;border:3px solid #fff;
-    box-shadow:0 2px 12px rgba(0,166,126,.5);
+    background:#159BB3;border:3px solid #fff;
+    box-shadow:0 2px 12px rgba(21,155,179,.5);
     display:flex;align-items:center;justify-content:center;
   "><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>`,
   className: '', iconSize: [36, 36], iconAnchor: [18, 18],
@@ -35,10 +35,10 @@ const iconUsuario = new L.DivIcon({
 const iconMedidor = new L.DivIcon({
   html: `<div style="
     width:36px;height:36px;border-radius:10px;
-    background:#111110;border:3px solid #00a67e;
+    background:#111110;border:3px solid #159BB3;
     box-shadow:0 2px 12px rgba(0,0,0,.3);
     display:flex;align-items:center;justify-content:center;
-  "><svg width="16" height="16" viewBox="0 0 24 24" fill="#00a67e"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></div>`,
+  "><svg width="16" height="16" viewBox="0 0 24 24" fill="#159BB3"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></div>`,
   className: '', iconSize: [36, 36], iconAnchor: [18, 18],
 })
 
@@ -50,7 +50,7 @@ function RecenterMap({ center }) {
 }
 
 const css = `
-  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
   .geo-root {
     --white:      #ffffff;
@@ -61,10 +61,10 @@ const css = `
     --ink-2:      #3a3a38;
     --ink-3:      #737370;
     --ink-4:      #b0b0ac;
-    --teal:       #00a67e;
-    --teal-dk:    #007a5e;
-    --teal-bg:    #e6f7f2;
-    --teal-bd:    #b3e8d8;
+    --teal:       #159BB3;
+    --teal-dk:    #0D7182;
+    --teal-bg:    #E8F8FB;
+    --teal-bd:    #B8E4EB;
     --red:        #dc2626;
     --red-bg:     #fef2f2;
     --red-bd:     #fecaca;
@@ -74,9 +74,9 @@ const css = `
     --green:      #16a34a;
     --green-bg:   #f0fdf4;
     --green-bd:   #bbf7d0;
-    --indigo:     #4f46e5;
-    --indigo-bg:  #eef0fd;
-    --indigo-bd:  #c7c3f7;
+    --indigo:     #2F80ED;
+    --indigo-bg:  #EFF7FF;
+    --indigo-bd:  #C7DFFF;
     font-family: 'Inter', system-ui, sans-serif;
     color: var(--ink);
     display: flex;
@@ -95,7 +95,7 @@ const css = `
     justify-content: center; color: var(--teal); flex-shrink: 0;
   }
   .geo-title {
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 26px;
+    font-family: 'Inter', sans-serif; font-weight: 800; font-size: 26px;
     color: var(--ink); letter-spacing: -.02em; line-height: 1.1;
   }
   .geo-subtitle { font-size: 13px; color: var(--ink-3); margin-top: 3px; }
@@ -121,7 +121,7 @@ const css = `
   .loading .geo-session-icon { background: var(--indigo);color: #fff; }
 
   .geo-session-title {
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px;
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 15px;
   }
   .valid   .geo-session-title { color: var(--teal-dk); }
   .invalid .geo-session-title { color: var(--red); }
@@ -130,7 +130,7 @@ const css = `
   .geo-session-sub { font-size: 12.5px; color: var(--ink-3); margin-top: 2px; }
   .geo-session-badge {
     margin-left: auto; padding: 6px 14px; border-radius: 99px;
-    font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700;
+    font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700;
     white-space: nowrap;
   }
   .valid   .geo-session-badge { background: var(--teal);  color: #fff; }
@@ -153,7 +153,7 @@ const css = `
     background: var(--white);
   }
   .geo-map-label {
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px;
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px;
     color: var(--ink); display: flex; align-items: center; gap: 8px;
   }
   .geo-map-label-dot {
@@ -161,8 +161,8 @@ const css = `
     animation: gpulse 2s infinite;
   }
   @keyframes gpulse {
-    0%,100%{box-shadow:0 0 0 0 rgba(0,166,126,.4)}
-    50%{box-shadow:0 0 0 6px rgba(0,166,126,0)}
+    0%,100%{box-shadow:0 0 0 0 rgba(21,155,179,.4)}
+    50%{box-shadow:0 0 0 6px rgba(21,155,179,0)}
   }
   .geo-map-inner { height: 360px; position: relative; }
   .geo-map-overlay {
@@ -177,7 +177,7 @@ const css = `
     animation: gspin .8s linear infinite;
   }
   @keyframes gspin { to { transform: rotate(360deg); } }
-  .geo-map-overlay-txt { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; color: var(--ink-3); }
+  .geo-map-overlay-txt { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 14px; color: var(--ink-3); }
 
   /* ── BTN REFRESH ── */
   .geo-btn-refresh {
@@ -216,7 +216,7 @@ const css = `
   }
   .geo-dist-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 4px; }
   .geo-dist-num {
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 42px;
+    font-family: 'Inter', sans-serif; font-weight: 800; font-size: 42px;
     color: #fff; letter-spacing: -.04em; line-height: 1;
   }
   .geo-dist-unit { font-size: 18px; color: var(--teal); font-weight: 700; }
@@ -236,7 +236,7 @@ const css = `
     border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 10px;
   }
   .geo-card-title {
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 12.5px;
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 12.5px;
     color: var(--ink); display: flex; align-items: center; gap: 7px;
   }
   .geo-card-ico {
@@ -253,7 +253,7 @@ const css = `
   .geo-row-k { color: var(--ink-3); }
   .geo-row-v {
     font-weight: 600; color: var(--ink);
-    font-family: 'Syne', sans-serif; font-size: 12.5px;
+    font-family: 'Inter', sans-serif; font-size: 12.5px;
   }
   .geo-row-v.mono { font-family: monospace; font-size: 10.5px; font-weight: 400; color: var(--ink-2); }
   .geo-row-v.green { color: var(--green); }
@@ -265,7 +265,7 @@ const css = `
   .geo-btn-primary {
     display: flex; align-items: center; justify-content: center; gap: 8px;
     padding: 14px; border-radius: 12px; border: none; cursor: pointer;
-    font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700;
+    font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700;
     transition: all .15s; letter-spacing: -.01em;
   }
   .geo-btn-primary.teal { background: var(--teal); color: #fff; }
@@ -296,7 +296,7 @@ const css = `
   .geo-toast {
     position: fixed; bottom: 24px; right: 24px; z-index: 9999;
     background: var(--ink); color: #fff; padding: 12px 20px; border-radius: 12px;
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px;
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px;
     display: flex; align-items: center; gap: 10px;
     box-shadow: 0 8px 32px rgba(0,0,0,.2);
     border-left: 3px solid var(--teal);
@@ -306,7 +306,7 @@ const css = `
   .geo-unlock {
     display: flex; align-items: center; gap: 14px;
     padding: 16px 20px; border-radius: 14px;
-    background: linear-gradient(135deg, #007a5e 0%, #00a67e 100%);
+    background: linear-gradient(135deg, #0D7182 0%, #159BB3 100%);
     color: #fff;
   }
   .geo-unlock-icon {
@@ -315,7 +315,7 @@ const css = `
     display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .geo-unlock-title {
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 15px;
+    font-family: 'Inter', sans-serif; font-weight: 800; font-size: 15px;
   }
   .geo-unlock-sub { font-size: 12px; opacity: .75; margin-top: 2px; }
 `
@@ -519,8 +519,8 @@ export default function Geolocalizacion({ usuario }) {
                       center={[medidor.latitud, medidor.longitud]}
                       radius={100}
                       pathOptions={{
-                        color: estado === 'valid' ? '#00a67e' : '#dc2626',
-                        fillColor: estado === 'valid' ? '#00a67e' : '#dc2626',
+                        color: estado === 'valid' ? '#159BB3' : '#dc2626',
+                        fillColor: estado === 'valid' ? '#159BB3' : '#dc2626',
                         fillOpacity: 0.07,
                         weight: 2,
                         dashArray: estado === 'valid' ? undefined : '8 4',
@@ -531,7 +531,7 @@ export default function Geolocalizacion({ usuario }) {
                     <Polyline
                       positions={[[ubicacion.lat, ubicacion.lng], [medidor.latitud, medidor.longitud]]}
                       pathOptions={{
-                        color: estado === 'valid' ? '#00a67e' : '#4f46e5',
+                        color: estado === 'valid' ? '#159BB3' : '#2F80ED',
                         weight: 2,
                         dashArray: '6 4',
                         opacity: .7,
@@ -551,7 +551,7 @@ export default function Geolocalizacion({ usuario }) {
           {/* Leyenda */}
           <div className="geo-map-legend">
             <div className="geo-legend-item">
-              <div className="geo-legend-dot" style={{ background: '#00a67e', borderRadius: '50%' }} />
+              <div className="geo-legend-dot" style={{ background: '#159BB3', borderRadius: '50%' }} />
               Tu posición
             </div>
             <div className="geo-legend-item">
@@ -559,11 +559,11 @@ export default function Geolocalizacion({ usuario }) {
               Medidor
             </div>
             <div className="geo-legend-item">
-              <div className="geo-legend-dot" style={{ background: 'rgba(0,166,126,.3)', border: '1px solid #00a67e', borderRadius: 3 }} />
+              <div className="geo-legend-dot" style={{ background: 'rgba(0,166,126,.3)', border: '1px solid #159BB3', borderRadius: 3 }} />
               Zona válida (100 m)
             </div>
             <div className="geo-legend-item">
-              <div style={{ width: 18, height: 2, background: '#4f46e5', borderTop: '2px dashed #4f46e5' }} />
+              <div style={{ width: 18, height: 2, background: '#2F80ED', borderTop: '2px dashed #2F80ED' }} />
               Distancia
             </div>
           </div>
@@ -738,3 +738,5 @@ export default function Geolocalizacion({ usuario }) {
     </div>
   )
 }
+
+

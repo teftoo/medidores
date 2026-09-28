@@ -93,10 +93,10 @@ const css = `
     --ink-2:      #3a3a38;
     --ink-3:      #737370;
     --ink-4:      #b0b0ac;
-    --teal: #7C3AED;
-    --teal-dk: #5B21B6;
-    --teal-bg: #F3E8FF;
-    --teal-bd: #DDD6FE;
+    --teal:       #00a67e;
+    --teal-dk:    #007a5e;
+    --teal-bg:    #e6f7f2;
+    --teal-bd:    #b3e8d8;
     --red:        #dc2626;
     --red-bg:     #fef2f2;
     --red-bd:     #fecaca;
@@ -106,9 +106,9 @@ const css = `
     --amber:      #d97706;
     --amber-bg:   #fffbeb;
     --amber-bd:   #fde68a;
-    --indigo: #2563EB;
-    --indigo-bg: #EFF6FF;
-    --indigo-bd: #BFDBFE;
+    --indigo:     #4f46e5;
+    --indigo-bg:  #eef0fd;
+    --indigo-bd:  #c7c3f7;
     font-family: 'Inter', system-ui, sans-serif;
     display: flex;
     height: 100vh;
@@ -120,7 +120,8 @@ const css = `
   /* ── SIDEBAR ── */
   .adm-sidebar {
     height: 100vh; flex-shrink: 0;
-    background: linear-gradient(180deg, #17132B 0%, #24154A 100%); display: flex; flex-direction: column;
+    background: var(--ink);
+    display: flex; flex-direction: column;
     overflow: hidden; position: relative; z-index: 30;
     transition: width .25s cubic-bezier(.4,0,.2,1);
   }
@@ -131,11 +132,11 @@ const css = `
   }
   .adm-logo-mark {
     width: 34px; height: 34px; border-radius: 9px;
-    background: linear-gradient(135deg, #7C3AED, #2563EB); flex-shrink: 0;
+    background: var(--teal); flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
   }
   .adm-logo-text {
-    font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 14px;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 14px;
     color: #fff; letter-spacing: -.02em; white-space: nowrap; overflow: hidden;
   }
   .adm-logo-text span { color: var(--teal); }
@@ -191,7 +192,7 @@ const css = `
     width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
     background: #1f2937; border: 1.5px solid var(--teal);
     display: flex; align-items: center; justify-content: center;
-    font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 13px; color: var(--teal);
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 13px; color: var(--teal);
   }
   .adm-user-name { font-size: 12px; font-weight: 600; color: #fff; white-space: nowrap; }
   .adm-user-role { font-size: 10px; color: var(--teal); white-space: nowrap; }
@@ -265,7 +266,7 @@ const css = `
   .adm-profile-avatar {
     width: 30px; height: 30px; border-radius: 7px;
     background: var(--ink); display: flex; align-items: center; justify-content: center;
-    font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 12px; color: var(--teal);
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 12px; color: var(--teal);
   }
   .adm-profile-name { font-size: 12px; font-weight: 600; color: var(--ink); }
   .adm-profile-role { font-size: 10px; color: var(--teal); }
@@ -281,7 +282,7 @@ const css = `
     padding: 12px 16px; border-bottom: 1px solid var(--border);
     display: flex; justify-content: space-between; align-items: center;
   }
-  .adm-dropdown-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 13px; color: var(--ink); }
+  .adm-dropdown-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px; color: var(--ink); }
   .adm-dropdown-action { font-size: 11px; color: var(--teal); font-weight: 600; cursor: pointer; border: none; background: none; }
   .adm-dropdown-item {
     display: flex; align-items: flex-start; gap: 10px;
@@ -316,7 +317,7 @@ const css = `
   /* ── PAGE HEADER ── */
   .adm-page-header { margin-bottom: 24px; display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
   .adm-page-title {
-    font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 26px;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 26px;
     color: var(--ink); letter-spacing: -.04em; line-height: 1.1;
   }
   .adm-page-sub { font-size: 13px; color: var(--ink-3); margin-top: 5px; }
@@ -326,14 +327,14 @@ const css = `
   .adm-btn {
     display: flex; align-items: center; gap: 7px;
     padding: 9px 16px; border-radius: 9px; border: none;
-    font-family: 'Plus Jakarta Sans', sans-serif; font-size: 13px; font-weight: 700;
+    font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700;
     cursor: pointer; transition: all .15s; letter-spacing: -.01em; white-space: nowrap;
   }
   .adm-btn-ghost {
     background: var(--white); color: var(--ink-2); border: 1.5px solid var(--border) !important;
   }
   .adm-btn-ghost:hover { background: var(--off); }
-  .adm-btn-primary { background: linear-gradient(135deg, #17132B, #31215F); color: #fff; }
+  .adm-btn-primary { background: var(--ink); color: #fff; }
   .adm-btn-primary:hover { background: var(--ink-2); }
 
   /* ── STAT CARDS ── */
@@ -356,7 +357,7 @@ const css = `
   .adm-stat-delta.up   { background: var(--green-bg); color: var(--green); }
   .adm-stat-delta.down { background: var(--red-bg);   color: var(--red); }
   .adm-stat-value {
-    font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 24px;
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 24px;
     color: var(--ink); letter-spacing: -.04em; line-height: 1;
   }
   .adm-stat-label { font-size: 12px; color: var(--ink-3); margin-top: 5px; }
@@ -371,7 +372,7 @@ const css = `
     padding: 16px 20px; border-bottom: 1px solid var(--border);
     display: flex; justify-content: space-between; align-items: center;
   }
-  .adm-card-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 14px; color: var(--ink); }
+  .adm-card-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; color: var(--ink); }
   .adm-card-sub   { font-size: 11px; color: var(--ink-4); margin-top: 3px; }
   .adm-card-link  { font-size: 12px; color: var(--teal); font-weight: 600; background: none; border: none; cursor: pointer; display: flex; align-items: center; gap: 4px; }
 
@@ -381,7 +382,7 @@ const css = `
   .adm-tr { border-top: 1px solid var(--border); cursor: pointer; transition: background .1s; }
   .adm-tr:hover { background: var(--off); }
   .adm-td { padding: 11px 16px; font-size: 12.5px; color: var(--ink-2); }
-  .adm-td-id { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; color: var(--ink); font-size: 12px; }
+  .adm-td-id { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--ink); font-size: 12px; }
   .adm-badge {
     display: inline-flex; align-items: center; gap: 5px;
     padding: 3px 9px; border-radius: 99px;
@@ -414,7 +415,7 @@ const css = `
     padding: 16px 14px; border-radius: 12px;
     border: 1.5px solid var(--border); background: var(--off);
     cursor: pointer; display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
-    transition: all .15s; font-family: 'Plus Jakarta Sans', sans-serif;
+    transition: all .15s; font-family: 'Syne', sans-serif;
   }
   .adm-qa-btn:hover { background: var(--white); border-color: var(--teal-bd); }
   .adm-qa-icon { width: 30px; height: 30px; border-radius: 8px; background: var(--teal-bg); display: flex; align-items: center; justify-content: center; }
@@ -440,7 +441,7 @@ const css = `
 
   .adm-mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 0 20px 20px; }
   .adm-mini-card { background: var(--off); border: 1.5px solid var(--border); border-radius: 10px; padding: 12px 14px; }
-  .adm-mini-val { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 17px; color: var(--ink); letter-spacing: -.03em; }
+  .adm-mini-val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 17px; color: var(--ink); letter-spacing: -.03em; }
   .adm-mini-lbl { font-size: 10px; color: var(--ink-4); margin-top: 2px; }
 
   /* ── EMPTY STATE ── */
@@ -453,7 +454,7 @@ const css = `
     background: var(--off); border: 1.5px solid var(--border);
     display: flex; align-items: center; justify-content: center;
   }
-  .adm-empty-title { font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 800; font-size: 18px; color: var(--ink); letter-spacing: -.02em; }
+  .adm-empty-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; color: var(--ink); letter-spacing: -.02em; }
   .adm-empty-sub { font-size: 13px; color: var(--ink-3); line-height: 1.5; }
   .adm-empty-sub code { background: var(--off); border: 1px solid var(--border); border-radius: 4px; padding: 1px 5px; font-size: 12px; }
 
@@ -858,5 +859,3 @@ export default function AdminDashboard({ userName = 'Administrador' }) {
     </div>
   )
 }
-
-

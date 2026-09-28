@@ -4,6 +4,16 @@ import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabaseClient'
 import { calcularTarifaGasCompleta } from '@/lib/tariffGasUtils'
+import CamaraGas from '@/app/components/gas/camaragas'
+import Geolocalizacion from '@/app/components/gas/geolocalizacion'
+import HistorialGas from '@/app/components/gas/historialgas'
+import MedidorManualGas from '@/app/components/gas/medidormanualgas'
+import PagosGas from '@/app/components/gas/pagosgas'
+import PerfilUsuario from '@/app/components/gas/perfilusuario'
+import ReportesGas from '@/app/components/gas/reportesgas'
+import SidebarGas from '@/app/components/gas/sidebarGas'
+
+
 import {
   Flame, Home, History, FileText, CreditCard, Camera,
   MapPin, PenLine, User, LogOut, ChevronRight, TrendingDown,
@@ -24,13 +34,10 @@ const css = `
     --ink-2:      #3a3a38;
     --ink-3:      #737370;
     --ink-4:      #b0b0ac;
-
-    /* Gas accent — amber/orange palette en lugar de teal */
     --gas:        #f97316;
     --gas-dk:     #c2410c;
     --gas-bg:     #fff7ed;
     --gas-bd:     #fed7aa;
-
     --indigo:     #4f46e5;
     --indigo-bg:  #eef0fd;
     --indigo-bd:  #c7c3f7;
@@ -44,7 +51,6 @@ const css = `
     --green:      #16a34a;
     --green-bg:   #f0fdf4;
     --green-bd:   #bbf7d0;
-
     font-family: 'Inter', system-ui, sans-serif;
     background: var(--white);
     color: var(--ink);
@@ -52,7 +58,6 @@ const css = `
     display: flex;
   }
 
-  /* ─── SIDEBAR ─── */
   .cn-sidebar {
     width: 232px; min-height: 100vh;
     background: var(--ink);
@@ -61,7 +66,6 @@ const css = `
     transition: width .22s ease;
   }
   .cn-sidebar.slim { width: 64px; }
-
   .sb-brand {
     padding: 26px 20px 22px;
     display: flex; align-items: center; gap: 11px;
@@ -78,13 +82,11 @@ const css = `
     color: #fff; letter-spacing: -.01em; white-space: nowrap;
   }
   .sb-brand-dot { color: var(--gas); }
-
   .sb-section-label {
     padding: 18px 18px 6px; font-size: 10px; font-weight: 600;
     letter-spacing: .1em; text-transform: uppercase;
     color: rgba(255,255,255,.25); white-space: nowrap; overflow: hidden;
   }
-
   .sb-nav {
     flex: 1; padding: 8px 10px;
     display: flex; flex-direction: column; gap: 1px; overflow-y: auto;
@@ -101,7 +103,6 @@ const css = `
   .sb-item.on svg { color: var(--gas); }
   .sb-icon { width: 15px; height: 15px; flex-shrink: 0; }
   .sb-pip { width: 5px; height: 5px; background: var(--gas); border-radius: 50%; margin-left: auto; flex-shrink: 0; }
-
   .sb-user { padding: 12px 10px 16px; border-top: 1px solid rgba(255,255,255,.07); }
   .sb-user-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: 9px; margin-bottom: 6px; }
   .sb-avatar {
@@ -119,7 +120,6 @@ const css = `
     font-family: 'Inter', sans-serif; transition: all .15s;
   }
   .sb-logout:hover { color: #ff7070; border-color: rgba(255,100,100,.2); background: rgba(255,80,80,.05); }
-
   .sb-toggle {
     position: absolute; right: -13px; top: 72px;
     width: 26px; height: 26px;
@@ -129,9 +129,7 @@ const css = `
   }
   .sb-toggle:hover { color: var(--ink); }
 
-  /* ─── MAIN ─── */
   .cn-main { flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
-
   .cn-topbar {
     position: sticky; top: 0; z-index: 10;
     background: rgba(255,255,255,.92); backdrop-filter: blur(14px);
@@ -156,9 +154,7 @@ const css = `
   .tb-dot { width: 6px; height: 6px; background: var(--gas); border-radius: 50%; animation: blink 2s infinite; }
   @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
 
-  /* ─── PAGE ─── */
   .cn-page { padding: 40px 44px; max-width: 960px; display: flex; flex-direction: column; gap: 32px; }
-
   .greet-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
   .greet-h {
     font-family: 'Syne', sans-serif; font-weight: 800; font-size: 44px;
@@ -173,9 +169,7 @@ const css = `
   .month-chip .ml { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-4); font-weight: 600; }
   .month-chip .mv { font-size: 14px; font-weight: 700; color: var(--ink-2); margin-top: 3px; font-family: 'Syne', sans-serif; }
 
-  /* ─── STAT STRIP ─── */
   .stat-strip { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 16px; }
-
   .stat-card {
     background: var(--white); border: 1.5px solid var(--border); border-radius: 20px;
     padding: 26px 28px; position: relative; overflow: hidden; transition: border-color .2s, transform .15s;
@@ -185,11 +179,9 @@ const css = `
   .stat-card.hero:hover { transform: none; }
   .stat-card.pay-card { background: var(--gas); border-color: var(--gas); }
   .stat-card.pay-card:hover { transform: none; }
-
   .sc-label { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px; }
   .hero .sc-label { color: rgba(255,255,255,.4); }
   .pay-card .sc-label { color: rgba(255,255,255,.6); }
-
   .sc-value { display: flex; align-items: baseline; gap: 7px; }
   .sc-num {
     font-family: 'Syne', sans-serif; font-weight: 800; font-size: 54px;
@@ -200,13 +192,10 @@ const css = `
   .sc-unit { font-size: 18px; font-weight: 700; color: var(--gas); }
   .hero .sc-unit { color: var(--gas); }
   .pay-card .sc-unit { color: rgba(255,255,255,.65); font-size: 15px; }
-
   .level-tag { position: absolute; top: 22px; right: 22px; padding: 5px 13px; border-radius: 99px; font-size: 11.5px; font-weight: 600; border: 1px solid; }
   .lt-opt { background: var(--gas-bg); color: var(--gas-dk); border-color: var(--gas-bd); }
   .lt-nor { background: var(--amber-bg); color: var(--amber); border-color: var(--amber-bd); }
   .lt-alt { background: var(--red-bg); color: var(--red); border-color: var(--red-bd); }
-
-  /* Progress bar */
   .prog-wrap { margin-top: 22px; }
   .prog-meta { display: flex; justify-content: space-between; font-size: 11.5px; margin-bottom: 8px; }
   .prog-meta span { color: rgba(255,255,255,.3); }
@@ -214,15 +203,11 @@ const css = `
   .prog-track { height: 5px; background: rgba(255,255,255,.1); border-radius: 99px; overflow: hidden; }
   .prog-fill { height: 100%; background: var(--gas); border-radius: 99px; transition: width 1.1s cubic-bezier(.22,.68,0,1.2); }
   .prog-hint { font-size: 11.5px; color: rgba(255,255,255,.28); margin-top: 10px; }
-
-  /* Mini stat cards */
   .mini-sc-icon { width: 40px; height: 40px; border-radius: 11px; display: flex; align-items: center; justify-content: center; margin-bottom: 14px; }
   .mini-sc-icon.gas  { background: var(--gas-bg); color: var(--gas); }
   .mini-sc-icon.indigo { background: var(--indigo-bg); color: var(--indigo); }
   .mini-sc-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 28px; color: var(--ink); letter-spacing: -.02em; line-height: 1; }
   .mini-sc-lbl { font-size: 12px; color: var(--ink-3); margin-top: 5px; }
-
-  /* Pay card */
   .pay-bs { font-size: 16px; color: rgba(255,255,255,.45); font-weight: 500; align-self: flex-end; margin-bottom: 6px; }
   .pay-disc { display: flex; align-items: center; gap: 5px; margin-top: 8px; font-size: 12px; color: rgba(255,255,255,.6); }
   .pay-btn {
@@ -233,7 +218,6 @@ const css = `
   }
   .pay-btn:hover { background: var(--gas-bg); }
 
-  /* ─── FACTURA DETALLE ─── */
   .fact-wrap {
     background: var(--white); border: 1.5px solid var(--border);
     border-radius: 20px; overflow: hidden; transition: border-color .2s;
@@ -269,7 +253,6 @@ const css = `
   .fact-total .ftv { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 24px; color: #fff; letter-spacing: -.02em; }
   .tarifa-note { padding: 13px 16px; background: var(--gas-bg); border: 1px solid var(--gas-bd); border-radius: 10px; font-size: 12px; color: var(--gas-dk); line-height: 1.6; }
 
-  /* ─── TIPS ─── */
   .tips-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
   .tip-card {
     background: var(--white); border: 1.5px solid var(--border);
@@ -283,7 +266,6 @@ const css = `
   .tip-t { font-family: 'Syne', sans-serif; font-size: 13.5px; font-weight: 700; color: var(--ink); margin-bottom: 5px; }
   .tip-b { font-size: 12.5px; color: var(--ink-3); line-height: 1.55; }
 
-  /* ─── ALERTA SEGURIDAD ─── */
   .safety-banner {
     display: flex; align-items: flex-start; gap: 14px;
     padding: 16px 20px; background: #fef9ec; border: 1.5px solid #fde68a;
@@ -293,7 +275,6 @@ const css = `
   .safety-title { font-family: 'Syne', sans-serif; font-size: 13.5px; font-weight: 700; color: #92400e; margin-bottom: 4px; }
   .safety-body { font-size: 12.5px; color: #b45309; line-height: 1.55; }
 
-  /* ─── EMPTY / LOADER ─── */
   .empty-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px 40px; gap: 12px; text-align: center; }
   .empty-icon { width: 52px; height: 52px; background: var(--gas-bg); border: 1.5px solid var(--gas-bd); border-radius: 14px; display: flex; align-items: center; justify-content: center; color: var(--gas); margin-bottom: 6px; }
   .empty-t { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; color: var(--ink); }
@@ -334,14 +315,13 @@ export default function UsuarioGas() {
         const { data: userData } = await supabase
           .from('usuarios').select('*').eq('correo', session.user.email).single()
 
-        // Lectura del medidor de gas (en m³)
         const { data: lectura } = await supabase
           .from('lecturas_gas').select('valor_lectura')
           .eq('id_usuario', userData?.id)
           .order('fecha_lectura', { ascending: false })
           .limit(1).single()
 
-        const valorLectura = lectura?.valor_lectura || 18   // m³ directamente para gas
+        const valorLectura = lectura?.valor_lectura || 18
         const tipoU = userData?.tipo_usuario || 'domestico'
         const descuentoU = userData?.descuento || 0
         const tarifas = calcularTarifaGasCompleta(valorLectura, tipoU, descuentoU)
@@ -394,7 +374,6 @@ export default function UsuarioGas() {
     </div>
   )
 
-  // Gas: límite recomendado doméstico ~30 m³/mes
   const limiteRecomendado = 30
   const porcentajeConsumo = Math.min((consumo / limiteRecomendado) * 100, 100)
   const nivelConsumo = consumo <= 15 ? 'Óptimo' : consumo <= 30 ? 'Normal' : 'Alto'
@@ -403,7 +382,6 @@ export default function UsuarioGas() {
     <div className="cn-root">
       <style>{css}</style>
 
-      {/* ── SIDEBAR ── */}
       <aside className={`cn-sidebar${sidebarOpen ? '' : ' slim'}`}>
         <div className="sb-brand">
           <div className="sb-brand-icon"><Flame size={17} /></div>
@@ -445,7 +423,6 @@ export default function UsuarioGas() {
         </button>
       </aside>
 
-      {/* ── MAIN ── */}
       <main className="cn-main">
         <header className="cn-topbar">
           <div className="tb-left">
@@ -474,6 +451,20 @@ export default function UsuarioGas() {
               nivelConsumo={nivelConsumo}
               limiteRecomendado={limiteRecomendado}
             />
+          ) : activeTab === 'camara' ? (
+            <CamaraGas />
+          ) : activeTab === 'historial' ? (
+            <HistorialGas usuario={usuario} />
+          ) : activeTab === 'reportes' ? (
+            <ReportesGas usuario={usuario} />
+          ) : activeTab === 'pagos' ? (
+            <PagosGas usuario={usuario} />
+          ) : activeTab === 'ubicacion' ? (
+            <Geolocalizacion usuario={usuario} />
+          ) : activeTab === 'medidor' ? (
+            <MedidorManualGas usuario={usuario} />
+          ) : activeTab === 'perfil' ? (
+            <PerfilUsuario usuario={usuario} />
           ) : (
             <div className="empty-wrap">
               <div className="empty-icon"><Flame size={24} /></div>
@@ -496,7 +487,6 @@ function InicioGas({ usuario, consumo, tarifaDetalles, porcentajeConsumo, nivelC
 
   return (
     <>
-      {/* ── SALUDO ── */}
       <div className="greet-row">
         <div>
           <h2 className="greet-h">
@@ -510,20 +500,17 @@ function InicioGas({ usuario, consumo, tarifaDetalles, porcentajeConsumo, nivelC
         </div>
       </div>
 
-      {/* ── ALERTA DE SEGURIDAD ── */}
       <div className="safety-banner">
         <div className="safety-icon"><AlertTriangle size={18} /></div>
         <div>
           <div className="safety-title">Seguridad en el hogar</div>
           <div className="safety-body">
-            Si detecta olor a gas, ventile el ambiente, no encienda llamas ni interruptores y llame a EMCOGAS al <strong>800-10-2020</strong> inmediatamente.
+            Si detecta olor a gas, ventile el ambiente, no encienda llamas ni interruptores.
           </div>
         </div>
       </div>
 
-      {/* ── TARJETAS DE ESTADÍSTICAS ── */}
       <div className="stat-strip">
-        {/* Hero – consumo */}
         <div className="stat-card hero">
           <p className="sc-label">Consumo registrado</p>
           <div className="sc-value">
@@ -543,16 +530,12 @@ function InicioGas({ usuario, consumo, tarifaDetalles, porcentajeConsumo, nivelC
             <p className="prog-hint">Límite recomendado {limiteRecomendado} m³ / mes doméstico</p>
           </div>
         </div>
-
-        {/* Mini – nivel */}
         <div className="stat-card">
           <div className="mini-sc-icon gas"><Gauge size={18} /></div>
           <p className="sc-label">Nivel</p>
           <div className="mini-sc-num">{nivelConsumo}</div>
           <p className="mini-sc-lbl">Estado de consumo</p>
         </div>
-
-        {/* Mini – tipo */}
         <div className="stat-card">
           <div className="mini-sc-icon indigo"><User size={18} /></div>
           <p className="sc-label">Tipo</p>
@@ -561,7 +544,6 @@ function InicioGas({ usuario, consumo, tarifaDetalles, porcentajeConsumo, nivelC
         </div>
       </div>
 
-      {/* ── TARJETA DE PAGO ── */}
       <div className="stat-card pay-card">
         <p className="sc-label">Total a pagar este mes</p>
         <div className="sc-value">
@@ -577,7 +559,6 @@ function InicioGas({ usuario, consumo, tarifaDetalles, porcentajeConsumo, nivelC
         <button className="pay-btn">Pagar ahora →</button>
       </div>
 
-      {/* ── DETALLE DE FACTURACIÓN ── */}
       <div className="fact-wrap">
         <button className="fact-toggle" onClick={() => setShowDetalle(!showDetalle)}>
           <div className="ft-left">
@@ -592,9 +573,9 @@ function InicioGas({ usuario, consumo, tarifaDetalles, porcentajeConsumo, nivelC
         {showDetalle && (
           <div className="fact-body">
             {[
-              { l: 'Consumo total',                  v: `${consumo.toFixed(2)} m³`,                                                                            cls: '' },
-              { l: 'Subtotal (tarifa base)',          v: `Bs ${tarifaDetalles?.subtotal?.toFixed(2)}`,                                                          cls: '' },
-              { l: `Factor tipo (${usuario?.tipo_usuario})`, v: `Bs ${tarifaDetalles?.totalConFactorTipo?.toFixed(2)}`,                                         cls: 'gas' },
+              { l: 'Consumo total',                         v: `${consumo.toFixed(2)} m³`,                                                                      cls: '' },
+              { l: 'Subtotal (tarifa base)',                 v: `Bs ${tarifaDetalles?.subtotal?.toFixed(2)}`,                                                    cls: '' },
+              { l: `Factor tipo (${usuario?.tipo_usuario})`,v: `Bs ${tarifaDetalles?.totalConFactorTipo?.toFixed(2)}`,                                           cls: 'gas' },
               ...(usuario?.descuento > 0
                 ? [{ l: `Descuento (${usuario.descuento}%)`, v: `−Bs ${(tarifaDetalles?.totalConFactorTipo - tarifaDetalles?.totalFinal)?.toFixed(2)}`, cls: 'green' }]
                 : [])
@@ -615,7 +596,6 @@ function InicioGas({ usuario, consumo, tarifaDetalles, porcentajeConsumo, nivelC
         )}
       </div>
 
-      {/* ── TIPS ── */}
       <div className="tips-grid">
         <div className="tip-card">
           <div className="tip-icon gas"><CheckCircle2 size={18} /></div>
@@ -635,3 +615,4 @@ function InicioGas({ usuario, consumo, tarifaDetalles, porcentajeConsumo, nivelC
     </>
   )
 }
+

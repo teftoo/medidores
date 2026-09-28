@@ -10,7 +10,7 @@ import {
 } from 'lucide-react'
 
 const css = `
-  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
   .pf-root {
     --white:      #ffffff;
@@ -21,14 +21,14 @@ const css = `
     --ink-2:      #3a3a38;
     --ink-3:      #737370;
     --ink-4:      #b0b0ac;
-    --teal:       #00a67e;
-    --teal-dk:    #007a5e;
-    --teal-bg:    #e6f7f2;
-    --teal-bd:    #b3e8d8;
-    --indigo:     #4f46e5;
-    --indigo-bg:  #eef0fd;
-    --indigo-bd:  #c7c3f7;
-    --indigo-dk:  #3730a3;
+    --teal:       #0ea5b8;
+    --teal-dk:    #0b7a8a;
+    --teal-bg:    #e3f6fb;
+    --teal-bd:    #a8e0ea;
+    --indigo:     #2563eb;
+    --indigo-bg:  #eff6ff;
+    --indigo-bd:  #bfdbfe;
+    --indigo-dk:  #1d4ed8;
     --red:        #dc2626;
     --red-bg:     #fef2f2;
     --red-bd:     #fecaca;
@@ -56,7 +56,7 @@ const css = `
     justify-content: center; color: var(--teal); flex-shrink: 0;
   }
   .pf-title {
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 28px;
+    font-family: 'Inter', sans-serif; font-weight: 800; font-size: 28px;
     color: var(--ink); letter-spacing: -.02em; line-height: 1.1;
   }
   .pf-subtitle { font-size: 13px; color: var(--ink-3); margin-top: 4px; }
@@ -74,7 +74,7 @@ const css = `
   }
   .pf-avatar-banner-accent {
     position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(0,166,126,.3) 0%, transparent 60%);
+    background: linear-gradient(135deg, rgba(14,165,184,.3) 0%, transparent 60%);
   }
   .pf-avatar-body { padding: 0 20px 24px; }
   .pf-avatar-wrap {
@@ -85,7 +85,7 @@ const css = `
     width: 80px; height: 80px; border-radius: 20px;
     border: 3px solid var(--white); object-fit: cover;
     background: var(--teal); display: flex; align-items: center;
-    justify-content: center; font-family: 'Syne', sans-serif;
+    justify-content: center; font-family: 'Inter', sans-serif;
     font-weight: 800; font-size: 28px; color: #fff;
     box-shadow: 0 4px 16px rgba(0,0,0,.12);
   }
@@ -100,7 +100,7 @@ const css = `
   .pf-avatar-cam:hover { background: var(--teal-dk); }
 
   .pf-name {
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px;
+    font-family: 'Inter', sans-serif; font-weight: 800; font-size: 18px;
     color: var(--ink); letter-spacing: -.01em; line-height: 1.2;
   }
   .pf-type {
@@ -125,7 +125,7 @@ const css = `
     display: flex; flex-direction: column; gap: 24px;
   }
   .pf-section-title {
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 13px;
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 13px;
     color: var(--ink); display: flex; align-items: center; gap: 8px;
     margin-bottom: 12px;
   }
@@ -153,7 +153,7 @@ const css = `
     font-family: 'Inter', sans-serif; transition: border-color .15s;
     width: 100%;
   }
-  .pf-input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(0,166,126,.1); }
+  .pf-input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(14,165,184,.1); }
   .pf-input-note { font-size: 11px; color: var(--ink-4); margin-top: 2px; }
 
   .pf-fields-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -169,7 +169,7 @@ const css = `
   .pf-badge-icon { flex-shrink: 0; margin-top: 1px; }
   .pf-badge.green  .pf-badge-icon { color: var(--green); }
   .pf-badge.indigo .pf-badge-icon { color: var(--indigo); }
-  .pf-badge-t { font-size: 12px; font-weight: 700; color: var(--ink); margin-bottom: 2px; font-family: 'Syne', sans-serif; }
+  .pf-badge-t { font-size: 12px; font-weight: 700; color: var(--ink); margin-bottom: 2px; font-family: 'Inter', sans-serif; }
   .pf-badge-s { font-size: 11px; color: var(--ink-3); line-height: 1.4; }
 
   /* ── ACCIONES ── */
@@ -177,7 +177,7 @@ const css = `
   .pf-btn {
     width: 100%; display: flex; align-items: center; justify-content: center; gap: 9px;
     padding: 13px; border-radius: 12px; border: none;
-    font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700;
+    font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 700;
     cursor: pointer; transition: all .15s; letter-spacing: -.01em;
   }
   .pf-btn-primary { background: var(--teal); color: #fff; }

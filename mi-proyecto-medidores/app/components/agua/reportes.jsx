@@ -16,7 +16,7 @@ import { supabase } from '@/lib/supabaseClient'
 import { calcularTarifaCompleta } from '@/lib/tariffUtils'
 
 const css = `
-  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
   .r-root {
     --white:     #ffffff;
@@ -27,10 +27,10 @@ const css = `
     --ink-2:     #3a3a38;
     --ink-3:     #737370;
     --ink-4:     #b0b0ac;
-    --teal:      #00a67e;
-    --teal-dk:   #007a5e;
-    --teal-bg:   #e6f7f2;
-    --teal-bd:   #b3e8d8;
+    --teal:      #0ea5b8;
+    --teal-dk:   #0b7a8a;
+    --teal-bg:   #e3f6fb;
+    --teal-bd:   #a8e0ea;
     --indigo:    #4f46e5;
     --indigo-bg: #eef0fd;
     --indigo-bd: #c7c3f7;
@@ -58,7 +58,7 @@ const css = `
     justify-content: center; color: var(--teal); flex-shrink: 0;
   }
   .r-title {
-    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 28px;
+    font-family: 'Inter', sans-serif; font-weight: 800; font-size: 28px;
     color: var(--ink); letter-spacing: -.02em; line-height: 1.1;
   }
   .r-subtitle { font-size: 13px; color: var(--ink-3); margin-top: 4px; }
@@ -92,7 +92,7 @@ const css = `
   .icon-green { background: var(--green-bg);  color: var(--green);  }
   .icon-ind   { background: var(--indigo-bg); color: var(--indigo); }
   .r-stat-lbl { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-4); margin-bottom: 6px; }
-  .r-stat-val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 24px; color: var(--ink); letter-spacing: -.02em; }
+  .r-stat-val { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 24px; color: var(--ink); letter-spacing: -.02em; }
   .r-stat-sub { font-size: 12px; color: var(--ink-3); margin-top: 5px; }
 
   .r-alerta {
@@ -106,7 +106,7 @@ const css = `
   .r-alerta.warn .r-alerta-icon { background: var(--amber-bd); color: var(--amber); }
   .r-alerta.ok   .r-alerta-icon { background: var(--green-bd); color: var(--green); }
   .r-alerta.info .r-alerta-icon { background: var(--indigo-bd); color: var(--indigo); }
-  .r-alerta-t { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; margin-bottom: 3px; }
+  .r-alerta-t { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 14px; margin-bottom: 3px; }
   .r-alerta.warn .r-alerta-t { color: var(--amber); }
   .r-alerta.ok   .r-alerta-t { color: var(--green); }
   .r-alerta.info .r-alerta-t { color: var(--indigo); }
@@ -117,7 +117,7 @@ const css = `
     border-radius: 16px; padding: 22px 24px; margin-bottom: 24px;
   }
   .r-card-title {
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px;
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 15px;
     color: var(--ink); margin-bottom: 4px; display: flex; align-items: center; gap: 8px;
   }
   .r-card-sub { font-size: 12px; color: var(--ink-3); margin-bottom: 20px; }
@@ -138,14 +138,14 @@ const css = `
   }
   .r-dist-dot { width: 10px; height: 10px; border-radius: 50%; margin: 0 auto 8px; }
   .r-dist-lbl { font-size: 11px; color: var(--ink-3); margin-bottom: 4px; }
-  .r-dist-val { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; }
+  .r-dist-val { font-family: 'Inter', sans-serif; font-weight: 800; font-size: 22px; }
 
   .r-tips {
     background: var(--white); border: 1.5px solid var(--border);
     border-radius: 16px; padding: 22px 24px;
   }
   .r-tips-title {
-    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px;
+    font-family: 'Inter', sans-serif; font-weight: 700; font-size: 14px;
     color: var(--ink); margin-bottom: 14px;
     display: flex; align-items: center; gap: 8px;
   }
@@ -314,15 +314,15 @@ export default function Reportes() {
       <AreaChart data={filtrados}>
         <defs>
           <linearGradient id="gradTeal" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#00a67e" stopOpacity={0.25} />
-            <stop offset="95%" stopColor="#00a67e" stopOpacity={0} />
+            <stop offset="5%" stopColor="#0ea5b8" stopOpacity={0.25} />
+            <stop offset="95%" stopColor="#0ea5b8" stopOpacity={0} />
           </linearGradient>
         </defs>
         <CartesianGrid strokeDasharray="3 3" stroke="#ebebea" />
         <XAxis dataKey="label" stroke="#b0b0ac" tick={{ fontSize: 11 }} />
         <YAxis stroke="#b0b0ac" tick={{ fontSize: 11 }} label={{ value: 'm³', angle: -90, position: 'insideLeft', style: { fontSize: 11 } }} />
         <Tooltip {...tooltipStyle} />
-        <Area type="monotone" dataKey="consumo" stroke="#00a67e" strokeWidth={2.5} fill="url(#gradTeal)" />
+        <Area type="monotone" dataKey="consumo" stroke="#0ea5b8" strokeWidth={2.5} fill="url(#gradTeal)" />
       </AreaChart>
     )
     if (vista === 'linea') return (
@@ -331,7 +331,7 @@ export default function Reportes() {
         <XAxis dataKey="label" stroke="#b0b0ac" tick={{ fontSize: 11 }} />
         <YAxis stroke="#b0b0ac" tick={{ fontSize: 11 }} label={{ value: 'm³', angle: -90, position: 'insideLeft', style: { fontSize: 11 } }} />
         <Tooltip {...tooltipStyle} />
-        <Line type="monotone" dataKey="consumo" stroke="#00a67e" strokeWidth={2.5} dot={{ fill: '#00a67e', r: 4 }} activeDot={{ r: 7 }} />
+        <Line type="monotone" dataKey="consumo" stroke="#0ea5b8" strokeWidth={2.5} dot={{ fill: '#0ea5b8', r: 4 }} activeDot={{ r: 7 }} />
       </LineChart>
     )
     return (
@@ -340,7 +340,7 @@ export default function Reportes() {
         <XAxis dataKey="label" stroke="#b0b0ac" tick={{ fontSize: 11 }} />
         <YAxis stroke="#b0b0ac" tick={{ fontSize: 11 }} label={{ value: 'm³', angle: -90, position: 'insideLeft', style: { fontSize: 11 } }} />
         <Tooltip {...tooltipStyle} />
-        <Bar dataKey="consumo" fill="#00a67e" radius={[6, 6, 0, 0]} />
+        <Bar dataKey="consumo" fill="#0ea5b8" radius={[6, 6, 0, 0]} />
       </BarChart>
     )
   }
@@ -349,7 +349,7 @@ export default function Reportes() {
     <div className="r-root">
       <style>{css}</style>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '80px 40px', gap: 16 }}>
-        <div style={{ width: 44, height: 44, border: '2.5px solid #ebebea', borderTopColor: '#00a67e', borderRadius: '50%', animation: 'spin .65s linear infinite' }} />
+        <div style={{ width: 44, height: 44, border: '2.5px solid #ebebea', borderTopColor: '#0ea5b8', borderRadius: '50%', animation: 'spin .65s linear infinite' }} />
         <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>
         <p style={{ fontSize: 12, color: '#b0b0ac', textTransform: 'uppercase', letterSpacing: '.1em' }}>Cargando reportes</p>
       </div>
@@ -498,3 +498,4 @@ export default function Reportes() {
     </div>
   )
 }
+

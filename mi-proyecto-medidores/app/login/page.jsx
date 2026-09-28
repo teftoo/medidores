@@ -15,7 +15,7 @@ import {
    abierto, luminoso y espacioso. Paleta blanca premium.
 ═══════════════════════════════════════════════════════ */
 const css = `
-  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -29,11 +29,11 @@ const css = `
     --ink-2:     #2e2e2c;
     --ink-3:     #6b6b68;
     --ink-4:     #aeaea9;
-    --teal:      #00a67e;
-    --teal-dk:   #007a5e;
-    --teal-bg:   #e4f5ef;
-    --teal-bd:   #a8e0cc;
-    --teal-mid:  #00c494;
+    --teal:      #4f46e5;
+    --teal-dk:   #3730a3;
+    --teal-bg:   #eef0fd;
+    --teal-bd:   #c7c3f7;
+    --teal-mid:  #6366f1;
     --red:       #d93025;
     --red-bg:    #fdf1f0;
     --red-bd:    #f5c0bb;
@@ -43,9 +43,10 @@ const css = `
   }
 
   .lg-root {
-    font-family: 'DM Sans', system-ui, sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
     background: var(--canvas);
-    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
     display: grid;
     grid-template-columns: 1fr 1fr;
     position: relative;
@@ -80,13 +81,13 @@ const css = `
     position: relative; z-index: 1;
     display: flex; flex-direction: column;
     justify-content: center;
-    padding: 64px 72px;
+    padding: 40px 60px;
     background: var(--canvas);
   }
 
   .lg-logo {
     display: flex; align-items: center; gap: 12px;
-    margin-bottom: 80px;
+    margin-bottom: 40px;
   }
   .lg-logo-mark {
     width: 36px; height: 36px;
@@ -96,7 +97,7 @@ const css = `
     color: var(--teal);
   }
   .lg-logo-text {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 800; font-size: 17px;
     color: var(--ink); letter-spacing: -.02em;
   }
@@ -108,8 +109,8 @@ const css = `
     color: var(--teal); margin-bottom: 18px;
   }
   .lg-hero-title {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800; font-size: 48px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800; font-size: 38px;
     line-height: 1.06; letter-spacing: -.04em;
     color: var(--ink); margin-bottom: 20px;
   }
@@ -121,7 +122,7 @@ const css = `
   .lg-hero-desc {
     font-size: 15px; color: var(--ink-3);
     line-height: 1.75; max-width: 340px;
-    margin-bottom: 56px;
+    margin-bottom: 32px;
   }
 
   /* Servicio pills */
@@ -146,7 +147,7 @@ const css = `
   .lg-pill.energy .lg-pill-icon { background: rgba(245,171,0,.12);  color: #d4920a; }
   .lg-pill.gas    .lg-pill-icon { background: rgba(220,100,50,.12);  color: #c15828; }
   .lg-pill-name {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 14px; font-weight: 700; color: var(--ink-2);
   }
   .lg-pill.active .lg-pill-name { color: var(--teal-dk); }
@@ -164,7 +165,7 @@ const css = `
   .lg-pill.active .lg-pill-dot { opacity: 1; background: var(--teal); }
 
   .lg-left-footer {
-    margin-top: 64px; font-size: 12px; color: var(--ink-4);
+    margin-top: 32px; font-size: 12px; color: var(--ink-4);
     font-style: italic;
   }
 
@@ -175,7 +176,7 @@ const css = `
     position: relative; z-index: 1;
     background: var(--white);
     display: flex; align-items: center; justify-content: center;
-    padding: 64px 80px;
+    padding: 36px 64px;
     border-left: 1px solid var(--border);
     min-height: 100vh;
   }
@@ -191,7 +192,7 @@ const css = `
     background: var(--teal-bg); border: 1px solid var(--teal-bd);
     font-size: 11.5px; font-weight: 600; color: var(--teal-dk);
     letter-spacing: .04em; text-transform: uppercase;
-    margin-bottom: 28px;
+    margin-bottom: 16px;
   }
   .badge-dot {
     width: 5px; height: 5px; border-radius: 50%;
@@ -204,18 +205,18 @@ const css = `
   }
 
   .lg-form-title {
-    font-family: 'Syne', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 800; font-size: 32px;
     color: var(--ink); letter-spacing: -.03em;
     line-height: 1.1; margin-bottom: 8px;
   }
   .lg-form-sub {
     font-size: 14.5px; color: var(--ink-3);
-    line-height: 1.65; margin-bottom: 40px;
+    line-height: 1.65; margin-bottom: 22px;
   }
 
   /* FIELDS */
-  .lg-fields { display: flex; flex-direction: column; gap: 20px; margin-bottom: 10px; }
+  .lg-fields { display: flex; flex-direction: column; gap: 14px; margin-bottom: 8px; }
 
   .lg-field { display: flex; flex-direction: column; gap: 7px; }
   .lg-field-label {
@@ -238,7 +239,7 @@ const css = `
     background: var(--off);
     border: 1.5px solid var(--border);
     border-radius: 14px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 14.5px; color: var(--ink);
     outline: none;
     transition: border-color .2s, background .2s, box-shadow .2s;
@@ -268,7 +269,7 @@ const css = `
   }
   .lg-forgot-btn {
     background: none; border: none; cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 13px; color: var(--teal-dk); font-weight: 500;
     padding: 4px 0; transition: color .15s;
   }
@@ -298,7 +299,7 @@ const css = `
     background: var(--ink); color: var(--white);
     border: 2px solid var(--ink);
     border-radius: 14px; cursor: pointer;
-    font-family: 'Syne', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 700; font-size: 15px; letter-spacing: -.01em;
     display: flex; align-items: center; justify-content: center; gap: 10px;
     transition: all .22s;
@@ -330,7 +331,7 @@ const css = `
   /* DIVIDER + REGISTER */
   .lg-or {
     display: flex; align-items: center; gap: 14px;
-    margin: 22px 0; font-size: 12px; color: var(--ink-4);
+    margin: 14px 0; font-size: 12px; color: var(--ink-4);
   }
   .lg-or::before, .lg-or::after {
     content: ''; flex: 1; height: 1px; background: var(--border);
@@ -342,7 +343,7 @@ const css = `
   .lg-register-hint { font-size: 13.5px; color: var(--ink-3); }
   .lg-register-btn {
     background: none; border: none; cursor: pointer;
-    font-family: 'Syne', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 13.5px; font-weight: 700; color: var(--ink);
     padding: 8px 16px; border-radius: 10px;
     border: 1.5px solid var(--border);
@@ -352,10 +353,10 @@ const css = `
     border-color: var(--ink); background: var(--off);
   }
 
-  .lg-back-row { margin-top: 40px; }
+  .lg-back-row { margin-top: 20px; }
   .lg-back-btn {
     background: none; border: none; cursor: pointer;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 12.5px; color: var(--ink-4);
     display: flex; align-items: center; gap: 6px;
     padding: 0; transition: color .15s;
@@ -364,7 +365,7 @@ const css = `
 
   /* FOOTER */
   .lg-form-footer {
-    margin-top: 52px; padding-top: 24px;
+    margin-top: 22px; padding-top: 14px;
     border-top: 1px solid var(--border);
     font-size: 11px; color: var(--ink-4); line-height: 1.6;
   }
