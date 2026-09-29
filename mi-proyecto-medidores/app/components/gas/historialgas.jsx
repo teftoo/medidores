@@ -1131,6 +1131,8 @@ Total: Bs ${(dato.consumo * 2.15).toFixed(2)}
 
     const url = URL.createObjectURL(blob)
 
+    if (typeof document === 'undefined') return
+
     const link = document.createElement('a')
 
     link.href = url

@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabaseClient'
 import { calcularTarifaElectricCompleta } from '@/lib/tariffElectricUtils'
@@ -16,7 +17,10 @@ import PagosLuz           from '@/app/components/luz/pagosluz'
 import ReporteLuz         from '@/app/components/luz/reporteLuz'
 import PerfilUsuario      from '@/app/components/luz/perfilusuario'
 import MedidorManualLuz   from '@/app/components/luz/medidormanualluz'
-import GeolocalizacionLuz from '@/app/components/luz/geolocalizacionluz'
+const GeolocalizacionLuz = dynamic(
+  () => import('@/app/components/luz/geolocalizacionluz'),
+  { ssr: false }
+)
 
 const css = `
   @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap');

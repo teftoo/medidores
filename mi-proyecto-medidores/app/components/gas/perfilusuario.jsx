@@ -280,7 +280,9 @@ export default function PerfilUsuario() {
 
   const handleLogout = async () => {
     await supabase.auth.signOut()
-    window.location.href = '/login'
+    if (typeof window !== 'undefined') {
+      window.location.href = '/login'
+    }
   }
 
   if (!usuario) return (

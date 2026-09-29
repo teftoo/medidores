@@ -13,7 +13,7 @@ import {
   FaDollarSign, FaInfoCircle, FaFileInvoiceDollar, FaLightbulb
 } from 'react-icons/fa'
 import { supabase } from '@/lib/supabaseClient'
-import { calcularTarifaElectrica } from '@/lib/tariffUtils'
+import { calcularTarifaElectricCompleta } from '@/lib/tariffElectricUtils'
 
 /* ─────────────────────────────────────────────────────────────────────
    DESIGN TOKENS
@@ -409,7 +409,7 @@ export default function HistorialLuz() {
   /* ── Cálculo de tarifa eléctrica (ajustá según tu tariffUtils) ── */
   const calcTotal = (consumo) => {
     const tipo = catU === 'I' ? 'industrial' : 'domestico'
-    const t = calcularTarifaElectrica(consumo, tipo, usuario?.descuento || 0)
+    const t = calcularTarifaElectricCompleta(consumo, tipo, usuario?.descuento || 0)
     return { ...t, total: t.totalFinal }
   }
 

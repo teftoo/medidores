@@ -829,6 +829,8 @@ export default function ReportesGas() {
 
     const url = URL.createObjectURL(blob)
 
+    if (typeof document === 'undefined') return
+
     const a = document.createElement('a')
 
     a.href = url

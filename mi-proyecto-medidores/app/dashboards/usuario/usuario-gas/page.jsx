@@ -1,11 +1,15 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import { useRouter } from 'next/navigation'
 import { supabase } from '@/lib/supabaseClient'
 import { calcularTarifaGasCompleta } from '@/lib/tariffGasUtils'
 import CamaraGas from '@/app/components/gas/camaragas'
-import Geolocalizacion from '@/app/components/gas/geolocalizacion'
+const Geolocalizacion = dynamic(
+  () => import('@/app/components/gas/geolocalizacion'),
+  { ssr: false }
+)
 import HistorialGas from '@/app/components/gas/historialgas'
 import MedidorManualGas from '@/app/components/gas/medidormanualgas'
 import PagosGas from '@/app/components/gas/pagosgas'
@@ -615,4 +619,5 @@ function InicioGas({ usuario, consumo, tarifaDetalles, porcentajeConsumo, nivelC
     </>
   )
 }
+
 
